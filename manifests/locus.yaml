@@ -12,14 +12,22 @@ in_silico_deletion:
   start_0based: 4976067
   end_0based_exclusive: 4976790
   length_bp: 723
-  status: inferred_clean_sgRNA_bounded_deletion
+  status: inferred_clean_spcas9_cut_to_cut_deletion
   caveat: >-
     The paper does not report a clone-resolved breakpoint sequence. This is the
-    clean deletion bounded by the two published sgRNA loci and must not be
-    described as the exact experimental clone junction.
+    clean cut-to-cut SpCas9 deletion implied by the two published guides and
+    must not be described as the exact experimental clone junction.
 published_sgrnas:
-  - TACTATCTATAGTAACTCCC
-  - TACCAGACTTCCACCGTATC
+  - sequence_5to3: TACTATCTATAGTAACTCCC
+    strand: "-"
+    protospacer_0based_half_open: [4976064, 4976084]
+    pam_guide_orientation: GGG
+    expected_spcas9_cut_0based: 4976067
+  - sequence_5to3: TACCAGACTTCCACCGTATC
+    strand: "-"
+    protospacer_0based_half_open: [4976787, 4976807]
+    pam_guide_orientation: AGG
+    expected_spcas9_cut_0based: 4976790
 conditions:
   strict_de_novo:
     control: reference DNA plus control K562 accessibility where supported

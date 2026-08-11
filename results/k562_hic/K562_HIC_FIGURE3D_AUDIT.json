@@ -1,0 +1,26 @@
+{
+  "hic_source": {
+    "path": "/data/vinhtb/activhitracMIX_stage/data/user_k562_hitrac_mix/K562.hic",
+    "sha256": "8ae9a61bf8f420d33f05f8c32747e520be57087650f1e6d0b499c2893673f9b3",
+    "extraction": "Juicer dump observed NONE, BP 1000"
+  },
+  "requested_locus_1based_inclusive": [
+    4803502,
+    5144387
+  ],
+  "enclosing_hic_grid_0based_half_open": [
+    4803000,
+    5145000
+  ],
+  "matrix_shape": [
+    342,
+    342
+  ],
+  "upper_triangle_contact_mass": 55196.0,
+  "diagonal_contact_mass": 14969.0,
+  "upper_triangle_nonzero_cells": 8714,
+  "display_transform": "log10(observed_count + 1), fixed range 0 to 2",
+  "clean_dump_sha256": "b49ac6d53a94341374193326a84911a91b2a8276f9ded2cacf6790f65b24afec",
+  "figure_sha256": "f08e405ecf23380deda8e0c479391df00945d93b74753401404fce8acef92d23",
+  "lineage_warning": "This historical K562.hic is not the pooled/downsampled experimental control used in NAR Figure 3D. It is shown because the user requested their K562.hic file for the identical genomic locus."
+}

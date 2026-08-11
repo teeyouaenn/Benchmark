@@ -26,16 +26,29 @@ control and deletion libraries to 33 million cis unique PETs for Figure 3D. The
 local experimental panels use the registered pooled WT/deletion 1-kb matrices.
 
 The paper reports two guide sequences but not the sequence-resolved junction of
-the assayed clone. Mapping those guides to hg38 supports the preregistered clean
-deletion:
+the assayed clone. A new primary-source audit covered the complete 15-page
+supplement, all nine supplemental workbooks, the authors' supplemental GitHub
+repository and GEO GSE208085. None reports a clone junction. Independent exact
+mapping of both guides to hg38 found one unique reverse-strand hit for each,
+valid NGG PAMs, and expected SpCas9 cuts at 0-based coordinates 4,976,067 and
+4,976,790. The preregistered interval is therefore exactly the implied clean
+cut-to-cut deletion:
 
 ```text
 chr3:4,976,067-4,976,790  (0-based, half-open)
 length: 723 bp
 ```
 
-It is therefore labelled **inferred clean sgRNA-bounded deletion; exact clone
-junction unavailable**.
+It is therefore labelled **inferred clean SpCas9 cut-to-cut deletion; exact
+clone junction unavailable**. This corrects the earlier, less precise phrase
+"sgRNA-bounded deletion": the guides span 743 bp, while the inferred deletion
+between their cleavage sites is 723 bp.
+
+The published K562 active sub-TAD containing BHLHE40 is
+`chr3:4,977,047-5,056,047` in Supplemental Table 2. Supplemental Table 4 records
+the boundary-deletion read libraries but not the molecular breakpoint. Full
+guide, PAM, cut-site and source details are recorded in
+`results/DELETION_BREAKPOINT_REAUDIT.md`.
 
 For fixed-length model inputs, the 723 bp were deleted, the flanks joined, and
 723 bp of downstream reference sequence appended. Positions downstream of the
@@ -121,6 +134,10 @@ on this single case study.
 4. `FIGURE3D_ALL_NATIVE_OUTPUTS.png` is the single overview panel.
 5. `FIGURE3D_TARGET_ASSISTED_NOT_DENOVO.png` isolates the target-assisted EPCOT
    and ChromaFold sensitivity analysis.
+6. `GVIZ_K562_HIC_BHLHE40_FIGURE3D.png` adds a Gviz hg38 chromosome-3 ideogram,
+   Gviz locus annotations, a one-dimensional contact marginal and the exact
+   paper locus extracted from the user's historical `K562.hic` at native 1-kb
+   resolution using Juicer `observed NONE`.
 
 WT and deletion panels share a color scale within each row. Difference panels
 use a row-specific symmetric scale. Color intensity must not be compared across
@@ -144,6 +161,11 @@ rows because every model predicts a different transformed quantity.
   dense array was required; conversion with `.toarray()` fixed data handling
   without altering the model.
 - All seven consolidated outputs passed shape, finiteness and SHA-256 audits.
+- Re-audited every supplemental workbook and the complete supplemental PDF;
+  corrected the deletion terminology from guide-bounded to SpCas9 cut-to-cut.
+- Re-extracted the exact Figure 3D locus from the historical `K562.hic` without
+  KR/VC balancing or O/E transformation. The 342 x 342 enclosing 1-kb grid has
+  55,196 upper-triangle contacts and 8,714 nonzero upper-triangle cells.
 
 ## 7. Scientific limitations
 
@@ -155,6 +177,9 @@ rows because every model predicts a different transformed quantity.
 4. AlphaGenome and Akita/Orca channels are selected explicitly, not averaged.
 5. These normalized outputs cannot recover absolute Hi-TrAC PET depth.
 6. This is a mechanistic locus case study, not a genome-wide held-out benchmark.
+7. The historical `K562.hic` locus panel is not the pooled/downsampled 33-million
+   cis-PET control used in the published Figure 3D; it is a separately prepared
+   K562 contact map shown at the user's request.
 
 ## 8. Reproducibility and integrity
 

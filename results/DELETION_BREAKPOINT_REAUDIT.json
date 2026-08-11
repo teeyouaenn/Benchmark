@@ -1,0 +1,68 @@
+{
+  "reference_slice": {
+    "path": "C:\\Users\\vinhtb\\AppData\\Local\\Temp\\gkad378_supplement_audit\\chr3_4970000_4985000.fa",
+    "sha256": "9ccbb6cc3e9a25224d79ae9ac5a2d8ef04326fa59de47b909d35c78db1b1ef7e",
+    "chromosome": "chr3",
+    "region_1based_inclusive": [
+      4970000,
+      4985000
+    ]
+  },
+  "published_guides_source": "NAR gkad378 main Methods",
+  "guides": [
+    {
+      "guide_index": 1,
+      "published_guide_5to3": "TACTATCTATAGTAACTCCC",
+      "strand": "-",
+      "reference_protospacer_5to3": "GGGAGTTACTATAGATAGTA",
+      "protospacer_0based_half_open": [
+        4976064,
+        4976084
+      ],
+      "protospacer_1based_inclusive": [
+        4976065,
+        4976084
+      ],
+      "pam_reference_5to3": "CCC",
+      "pam_guide_orientation_5to3": "GGG",
+      "pam_0based_half_open": [
+        4976061,
+        4976064
+      ],
+      "expected_spcas9_cut_0based": 4976067,
+      "cut_description_1based": "between chr3:4,976,067 and chr3:4,976,068"
+    },
+    {
+      "guide_index": 2,
+      "published_guide_5to3": "TACCAGACTTCCACCGTATC",
+      "strand": "-",
+      "reference_protospacer_5to3": "GATACGGTGGAAGTCTGGTA",
+      "protospacer_0based_half_open": [
+        4976787,
+        4976807
+      ],
+      "protospacer_1based_inclusive": [
+        4976788,
+        4976807
+      ],
+      "pam_reference_5to3": "CCT",
+      "pam_guide_orientation_5to3": "AGG",
+      "pam_0based_half_open": [
+        4976784,
+        4976787
+      ],
+      "expected_spcas9_cut_0based": 4976790,
+      "cut_description_1based": "between chr3:4,976,790 and chr3:4,976,791"
+    }
+  ],
+  "inferred_clean_deletion_0based_half_open": [
+    4976067,
+    4976790
+  ],
+  "inferred_clean_deletion_1based_inclusive": [
+    4976068,
+    4976790
+  ],
+  "inferred_clean_deletion_length_bp": 723,
+  "verdict": "The preregistered 723-bp interval is exactly the clean cut-to-cut SpCas9 deletion implied by the two published guides. The actual clone-resolved repair junction is not published."
+}

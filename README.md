@@ -15,10 +15,11 @@ The primary comparison is strictly de novo:
 - Deletion: inferred deletion DNA plus the same control K562 DNase shifted with
   its attached DNA across the derivative-chromosome junction.
 
-The deletion is the 723-bp clean interval inferred from the two published sgRNA
-sites, hg38 `chr3:4,976,067-4,976,790` in 0-based half-open coordinates. The
-paper does not provide a clone-resolved junction sequence, so this must not be
-called the exact experimental allele.
+The deletion is the 723-bp clean **SpCas9 cut-to-cut** interval inferred from the
+two published guides, hg38 `chr3:4,976,067-4,976,790` in 0-based half-open
+coordinates. Both guides map uniquely to hg38 with valid reverse-strand NGG
+PAMs. The paper and all nine supplemental tables do not provide a clone-resolved
+junction sequence, so this must not be called the exact experimental allele.
 
 An additional EPCOT/ChromaFold sensitivity analysis replaces accessibility with
 experimental deletion Hi-TrAC 1D rank-matched to the control-DNase distribution.
@@ -62,6 +63,9 @@ retrieves the public releases that support direct download.
 - [Pole, V-stripe and rotated outputs](figures/FIGURE3D_NON_SQUARE_NATIVE_OUTPUTS.png)
 - [Input tracks](figures/FIGURE3D_LOCUS_AND_INPUT_TRACKS.png)
 - [Target-assisted sensitivity analysis](figures/FIGURE3D_TARGET_ASSISTED_NOT_DENOVO.png)
+- [Gviz ideogram, audited locus tracks and historical K562.hic map](figures/GVIZ_K562_HIC_BHLHE40_FIGURE3D.png)
+- [Deletion breakpoint re-audit](results/DELETION_BREAKPOINT_REAUDIT.md)
+- [K562.hic extraction audit](results/k562_hic/K562_HIC_FIGURE3D_AUDIT.json)
 
 ## Primary sources
 
