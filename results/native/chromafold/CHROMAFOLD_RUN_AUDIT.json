@@ -1,0 +1,97 @@
+{
+  "adaptations": [
+    "bulk K562 DNase substitutes for the checkpoint's pseudobulk scATAC input",
+    "the official whole-genome library-size normalization and log1p transform are retained",
+    "reference CTCF motif scores are shifted with the deletion; the new junction is not rescanned",
+    "no scATAC coaccessibility is used, matching the selected no-coaccessibility checkpoint"
+  ],
+  "checkpoint": {
+    "name": "chromafold_CTCFmotif_noCoaccessibility.pth.tar",
+    "sha256": "70d81770fb19248daf0aaf7fdd9c046eb06ce85602a958746fe3df5bbeebaa2c"
+  },
+  "conditions": {
+    "deletion_control_dnase": "motif and the unchanged control DNase shifted with the inferred 723-bp derivative chromosome",
+    "deletion_hitrac1d_assisted": "NOT DE NOVO: experimental deletion Hi-TrAC 1D rank/quantile matched to control DNase units",
+    "wt_control_dnase": "reference motif plus K562 control DNase proxy"
+  },
+  "deletion_status": "inferred clean sgRNA-bounded deletion; exact clone junction unavailable",
+  "dnase_equivalent_50bp_libsize": 1368708.2,
+  "dnase_scale_factor": 0.07047876807983267,
+  "input_summaries": {
+    "deletion_control_dnase": {
+      "accessibility_mean": 0.2848888635635376,
+      "accessibility_sd": 0.2781103551387787,
+      "motif_mean": 0.084820456802845,
+      "motif_sd": 0.4381694495677948,
+      "shape": [
+        36,
+        2,
+        80200
+      ]
+    },
+    "deletion_hitrac1d_assisted": {
+      "accessibility_mean": 0.3039933741092682,
+      "accessibility_sd": 0.2501063942909241,
+      "motif_mean": 0.084820456802845,
+      "motif_sd": 0.4381694495677948,
+      "shape": [
+        36,
+        2,
+        80200
+      ]
+    },
+    "wt_control_dnase": {
+      "accessibility_mean": 0.28330713510513306,
+      "accessibility_sd": 0.28315338492393494,
+      "motif_mean": 0.0848635584115982,
+      "motif_sd": 0.43828085064888,
+      "shape": [
+        36,
+        2,
+        80200
+      ]
+    }
+  },
+  "inputs": {
+    "common_inputs_sha256": "6040cf45f0b75005a6a18c4e1f5e19da493ccbad5a1e476bbd87e0c14ea865bb",
+    "control_dnase_sha256": "7ba6ba20ed8c25acc282d03253360ac8edcdce6b9ab1a90832a980cfeaad12c6",
+    "motif_pickle_sha256": "a0719ad09348c440a8bb22a01e2faa41db1caa3a898a948691cbce59f0b8a2e5"
+  },
+  "native_prediction": {
+    "bin_bp": 10000,
+    "description": "HiC-DC+ normalized Z-score V-stripe",
+    "input_span_bp": 4010000,
+    "output_file": "/data/vinhtb/activhitracMIX_stage/experiments/activehitrac_1k/competitor_figure3d_native_20260811/native/chromafold/CHROMAFOLD_NATIVE_VSTRIPES.npz",
+    "output_geometry": "center by 400 partners; 200 left and 200 right",
+    "output_sha256": "6a62290157a979f13ebdfa6e2d718c4097a215ff4268185900ffcb8e5e1dbc93",
+    "shape_per_condition": [
+      36,
+      400
+    ]
+  },
+  "prediction_summaries": {
+    "deletion_control_dnase": {
+      "max": 6.635989189147949,
+      "mean": 0.4859258234500885,
+      "min": -1.0889509916305542,
+      "sd": 1.0422362089157104
+    },
+    "deletion_hitrac1d_assisted": {
+      "max": 4.814423561096191,
+      "mean": 0.6066765785217285,
+      "min": -0.650436520576477,
+      "sd": 0.6499437689781189
+    },
+    "wt_control_dnase": {
+      "max": 7.964494228363037,
+      "mean": 0.2478935271501541,
+      "min": -0.9946395754814148,
+      "sd": 0.8909060955047607
+    }
+  },
+  "scientific_status": "ADAPTED_CROSS_ASSAY_NOT_NATIVE_K562_SCATAC",
+  "source": {
+    "git_head": "1c5dd9b07d851d196c31c26024d90c0335f1bd75"
+  },
+  "status": "COMPLETE"
+}

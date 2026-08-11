@@ -1,0 +1,8 @@
+model,primary_channel,input,native_bin_bp,native_geometry,native_scale,absolute_counts,k562_matched,primary_de_novo,output_sha256
+AkitaV2,HFF,DNA,2048,512-bin square reconstructed from k>=2 upper triangle,processed log observed/expected,False,False,True,a3b0ef8f1e5cc89d205c5946f7b9d250730dae5061aecc3a64d04216cff096c3
+DeepC,K562,DNA,5000,83 center-anchored poles x 201 offsets,normalized center-anchored interaction profile,False,True,True,3c25b655458f8bd724cb38d6016d285e650e77070f7d58c704595a8044746270
+Orca,HFF,DNA,4000,250 x 250 dense symmetric matrix,normalized contact enrichment,False,False,True,e7f8305d608d054c184c14ad032b4934e089c70789da99b6c7f43983f6bd5d15
+EPCOT,HFF Micro-C head,DNA + K562 control DNase,1000,500 x 500 dense symmetric matrix,model-native predicted O/E scale,False,accessibility only,True,088c65509e73a19d98791fb54a0850552a7f7b2ea83e1a6f442cce2be34ee3b9
+ChromaFold motif,motif/no-coaccess checkpoint,K562 DNase proxy + hg38 CTCF motif,10000,36 center V-stripes x 400 partner offsets,HiC-DC+ Z-score,False,False,True,6a62290157a979f13ebdfa6e2d718c4097a215ff4268185900ffcb8e5e1dbc93
+AlphaGenome,HFFc6 Micro-C,DNA,2048,512 x 512 dense symmetric matrix,relative contact frequency,False,False,True,5c3a4c3e7bbbbfb411e4df64b3867aaab7ba988d03e6daf44486f24e085b88d0
+Chimaera,human release,DNA,2048,4 overlapping 32 x 128 rotated distance images,standardized log-distance residual,False,False,True,e9ce7635e48de10c083b7618f956541b1d1f28b68edeeba7618be2f94bffd2e4

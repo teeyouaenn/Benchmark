@@ -1,0 +1,67 @@
+models:
+  AkitaV2:
+    input: DNA
+    checkpoint: official_fold2_human
+    matched_cell_type: false
+    native_bin_bp: 2048
+    input_span_bp: 1310720
+    output_span_bp: 1048576
+    native_format: HDF5 upper-triangle predictions
+    target_scale: processed_log_observed_expected
+  DeepC:
+    input: DNA
+    checkpoint: official_K562_5kb
+    matched_cell_type: true
+    native_bin_bp: 5000
+    input_span_bp: 1005000
+    output_geometry: center_anchored_vertical_poles
+    native_format: tab_separated_center_poles
+    target_scale: normalized_skeleton_contact_profile
+  Orca:
+    input: DNA
+    checkpoint: official_H1ESC_and_HFF_1Mb
+    matched_cell_type: false
+    native_bin_bp: 4000
+    input_span_bp: 1000000
+    output_span_bp: 1000000
+    native_shape: [250, 250]
+    native_format: PyTorch_dictionary_multiscale_matrices
+    target_scale: normalized_contact_enrichment
+  EPCOT:
+    input: DNA_plus_accessibility
+    checkpoint: official_HFF_MicroC_1kb
+    matched_cell_type: cross_cell_K562_accessibility
+    native_bin_bp: 1000
+    input_span_bp: 600000
+    output_span_bp: 500000
+    native_format: compressed_NumPy_upper_triangle
+    target_scale: observed_expected_ratio
+  ChromaFold_motif_noCoaccessibility:
+    input: pseudobulk_scATAC_plus_sequence_CTCF_motif
+    checkpoint: official_motif_noCoaccessibility
+    matched_cell_type: false
+    accessibility_status: K562_DNase_proxy_not_native_scATAC
+    native_bin_bp: 10000
+    input_span_bp: 4010000
+    output_geometry: center_bin_V_stripe_400_partners_200_each_side
+    native_format: compressed_NumPy_V_stripes
+    target_scale: HiCDCplus_Z_score
+  AlphaGenome:
+    input: DNA
+    checkpoint: official_all_folds_local_weights
+    matched_cell_type: false
+    caveat: no_K562_contact_map_track_in_released_metadata
+    native_bin_bp: 2048
+    input_span_bp: 1048576
+    output_span_bp: 1048576
+    native_format: TrackData_dense_matrix_with_metadata
+    target_scale: relative_contact_frequency
+  Chimaera:
+    input: DNA
+    checkpoint: official_Homo_sapiens_release
+    matched_cell_type: false
+    native_span_bp: 262144
+    native_geometry: rotated_distance_coordinate_image
+    native_shape: [32, 128]
+    native_format: NumPy_array
+    target_scale: standardized_log_distance_residual

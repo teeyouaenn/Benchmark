@@ -1,0 +1,35 @@
+project: BHLHE40_Figure3D_native_model_benchmark
+genome: hg38
+chromosome: chr3
+published_display_locus:
+  start_0based: 4803501
+  end_0based_exclusive: 5144387
+  label_1based_inclusive: "chr3:4,803,502-5,144,387"
+common_context:
+  start_0based: 3000000
+  end_0based_exclusive: 7000000
+in_silico_deletion:
+  start_0based: 4976067
+  end_0based_exclusive: 4976790
+  length_bp: 723
+  status: inferred_clean_sgRNA_bounded_deletion
+  caveat: >-
+    The paper does not report a clone-resolved breakpoint sequence. This is the
+    clean deletion bounded by the two published sgRNA loci and must not be
+    described as the exact experimental clone junction.
+published_sgrnas:
+  - TACTATCTATAGTAACTCCC
+  - TACCAGACTTCCACCGTATC
+conditions:
+  strict_de_novo:
+    control: reference DNA plus control K562 accessibility where supported
+    deletion: >-
+      deleted DNA plus the same control K562 accessibility experiment shifted
+      with its attached derivative-chromosome DNA across the inferred junction
+  target_assisted_surrogate:
+    status: non_de_novo_not_primary
+    description: >-
+      Deletion Hi-TrAC 1D is quantile-matched to the control accessibility
+      distribution and supplied only to accessibility-aware models as a
+      sensitivity analysis. This leaks target-derived information and is not a
+      native or fair de novo benchmark.

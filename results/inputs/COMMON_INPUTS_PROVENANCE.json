@@ -1,0 +1,61 @@
+{
+  "chromosome": "chr3",
+  "context_0based_half_open": [
+    3000000,
+    7000000
+  ],
+  "coordinate_mapping": "derivative offsets before the junction map directly to hg38; offsets at/after the junction map to hg38 plus 723 bp",
+  "deletion_0based_half_open": [
+    4976067,
+    4976790
+  ],
+  "deletion_length_bp": 723,
+  "deletion_status": "inferred clean sgRNA-bounded deletion; exact clone junction unavailable",
+  "deletion_window_construction": "fixed-length derivative chromosome: delete the inferred interval, join the flanks, and append an equal-length downstream reference tail",
+  "display_0based_half_open": [
+    4803501,
+    5144387
+  ],
+  "genome": "hg38",
+  "inputs": {
+    "control_dnase": {
+      "path": "/data/vinhtb/activhitracMIX_stage/data/user_k562_hitrac_mix/K562.bw",
+      "sha256": "7ba6ba20ed8c25acc282d03253360ac8edcdce6b9ab1a90832a980cfeaad12c6"
+    },
+    "experimental_truth": {
+      "path": "/data/vinhtb/activhitracMIX_stage/experiments/activehitrac_1k/bhlhe40_full4mb_figure3d_20260731/output/EXPERIMENTAL_HITRAC_FULL4MB.npz",
+      "sha256": "941ec6a9803e8769b2bb6dc7fb690f57b71769ebd63c58a7fe532cb8e22e6aab"
+    },
+    "reference_fasta": {
+      "path": "/data/vinhtb/High_Resolution_Hi-TrAC/Other_Models/5. Orca/orca/resources/Homo_sapiens.GRCh38.dna.primary_assembly.fa",
+      "sha256": "556cd7558812e7d479f802ba423e0facd1b64e8930e8b6e67f9ef3f9bfc05a3b"
+    }
+  },
+  "outputs": {
+    "common_npz": {
+      "path": "/data/vinhtb/activhitracMIX_stage/experiments/activehitrac_1k/competitor_figure3d_native_20260811/inputs/COMMON_INPUTS_AND_TRUTH.npz",
+      "sha256": "6040cf45f0b75005a6a18c4e1f5e19da493ccbad5a1e476bbd87e0c14ea865bb"
+    },
+    "deletion_fasta": {
+      "path": "/data/vinhtb/activhitracMIX_stage/experiments/activehitrac_1k/competitor_figure3d_native_20260811/inputs/BHLHE40_DEL723_chr3_3Mb_7Mb.fa",
+      "sha256": "c0d03f6fa3e2da0619917e6d0d1521b66b52759afbbef1c81893b9cec64adf34"
+    },
+    "wt_fasta": {
+      "path": "/data/vinhtb/activhitracMIX_stage/experiments/activehitrac_1k/competitor_figure3d_native_20260811/inputs/BHLHE40_WT_chr3_3Mb_7Mb.fa",
+      "sha256": "68f376ac70ff2f4f85952fbb8a46c281745fe8e937ece2b42e14299a6b379c4b"
+    }
+  },
+  "status": "COMPLETE",
+  "strict_de_novo_accessibility": "the same control K562 DNase observation is used for WT and deletion; for the deletion it is shifted with its attached DNA across the junction",
+  "target_assisted_surrogate": {
+    "control_dnase_mean_1kb": 0.03011583350598812,
+    "control_dnase_sum_1kb": 120.46333312988281,
+    "source": "experimental deletion Hi-TrAC 1D endpoint profile",
+    "spearman_surrogate_vs_deletion_hitrac_1d": 0.9999999999999998,
+    "status": "NOT_DE_NOVO",
+    "surrogate_mean_1kb": 0.030123984861507778,
+    "surrogate_sum_1kb_derivative": 120.48529052734375,
+    "surrogate_sum_1kb_reference": 120.49593944603112,
+    "transformation": "rank/quantile match log1p endpoint profile to empirical control-DNase 1-kb distribution"
+  }
+}

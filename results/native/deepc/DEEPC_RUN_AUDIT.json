@@ -1,0 +1,30 @@
+{
+  "compressed_native_copy_sha256": "3c25b655458f8bd724cb38d6016d285e650e77070f7d58c704595a8044746270",
+  "input": "DNA only",
+  "k562_matched": true,
+  "model": "official DeepC K562 5-kb checkpoint",
+  "native_bin_bp": 5000,
+  "native_files": {
+    "deletion": {
+      "maximum": 8.582200050354004,
+      "mean": 4.558140277862549,
+      "minimum": 2.02620005607605,
+      "number_of_center_poles": 83,
+      "path": "/data/vinhtb/activhitracMIX_stage/experiments/activehitrac_1k/competitor_figure3d_native_20260811/native/deepc/deletion/class_predictions_deletion_1_chr3_4976067_4976789.txt",
+      "sha256": "558cd06561fcf930957c6b503aa9acfe8d3e788f9cc85eeac5488c1fe1040991",
+      "standard_deviation": 1.0210758447647095
+    },
+    "wt": {
+      "maximum": 8.58810043334961,
+      "mean": 4.677077770233154,
+      "minimum": 2.708400011062622,
+      "number_of_center_poles": 83,
+      "path": "/data/vinhtb/activhitracMIX_stage/experiments/activehitrac_1k/competitor_figure3d_native_20260811/native/deepc/wt/class_predictions_wt_1_chr3_4976067_4976789.txt",
+      "sha256": "e61b160b338bac5d0d7baf4827d91c72c3f9d576afa276301a3cb8845aa15c06",
+      "standard_deviation": 0.95191890001297
+    }
+  },
+  "native_pole_length": 201,
+  "native_scientific_scale": "normalized center-anchored contact profile",
+  "status": "COMPLETE"
+}

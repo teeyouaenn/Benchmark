@@ -1,0 +1,92 @@
+{
+  "status": "PASS",
+  "models_complete": 7,
+  "rows": [
+    {
+      "model": "AkitaV2",
+      "primary_channel": "HFF",
+      "input": "DNA",
+      "native_bin_bp": 2048,
+      "native_geometry": "512-bin square reconstructed from k>=2 upper triangle",
+      "native_scale": "processed log observed/expected",
+      "absolute_counts": false,
+      "k562_matched": false,
+      "primary_de_novo": true,
+      "output_sha256": "a3b0ef8f1e5cc89d205c5946f7b9d250730dae5061aecc3a64d04216cff096c3"
+    },
+    {
+      "model": "DeepC",
+      "primary_channel": "K562",
+      "input": "DNA",
+      "native_bin_bp": 5000,
+      "native_geometry": "83 center-anchored poles x 201 offsets",
+      "native_scale": "normalized center-anchored interaction profile",
+      "absolute_counts": false,
+      "k562_matched": true,
+      "primary_de_novo": true,
+      "output_sha256": "3c25b655458f8bd724cb38d6016d285e650e77070f7d58c704595a8044746270"
+    },
+    {
+      "model": "Orca",
+      "primary_channel": "HFF",
+      "input": "DNA",
+      "native_bin_bp": 4000,
+      "native_geometry": "250 x 250 dense symmetric matrix",
+      "native_scale": "normalized contact enrichment",
+      "absolute_counts": false,
+      "k562_matched": false,
+      "primary_de_novo": true,
+      "output_sha256": "e7f8305d608d054c184c14ad032b4934e089c70789da99b6c7f43983f6bd5d15"
+    },
+    {
+      "model": "EPCOT",
+      "primary_channel": "HFF Micro-C head",
+      "input": "DNA + K562 control DNase",
+      "native_bin_bp": 1000,
+      "native_geometry": "500 x 500 dense symmetric matrix",
+      "native_scale": "model-native predicted O/E scale",
+      "absolute_counts": false,
+      "k562_matched": "accessibility only",
+      "primary_de_novo": true,
+      "output_sha256": "088c65509e73a19d98791fb54a0850552a7f7b2ea83e1a6f442cce2be34ee3b9"
+    },
+    {
+      "model": "ChromaFold motif",
+      "primary_channel": "motif/no-coaccess checkpoint",
+      "input": "K562 DNase proxy + hg38 CTCF motif",
+      "native_bin_bp": 10000,
+      "native_geometry": "36 center V-stripes x 400 partner offsets",
+      "native_scale": "HiC-DC+ Z-score",
+      "absolute_counts": false,
+      "k562_matched": false,
+      "primary_de_novo": true,
+      "output_sha256": "6a62290157a979f13ebdfa6e2d718c4097a215ff4268185900ffcb8e5e1dbc93"
+    },
+    {
+      "model": "AlphaGenome",
+      "primary_channel": "HFFc6 Micro-C",
+      "input": "DNA",
+      "native_bin_bp": 2048,
+      "native_geometry": "512 x 512 dense symmetric matrix",
+      "native_scale": "relative contact frequency",
+      "absolute_counts": false,
+      "k562_matched": false,
+      "primary_de_novo": true,
+      "output_sha256": "5c3a4c3e7bbbbfb411e4df64b3867aaab7ba988d03e6daf44486f24e085b88d0"
+    },
+    {
+      "model": "Chimaera",
+      "primary_channel": "human release",
+      "input": "DNA",
+      "native_bin_bp": 2048,
+      "native_geometry": "4 overlapping 32 x 128 rotated distance images",
+      "native_scale": "standardized log-distance residual",
+      "absolute_counts": false,
+      "k562_matched": false,
+      "primary_de_novo": true,
+      "output_sha256": "e9ce7635e48de10c083b7618f956541b1d1f28b68edeeba7618be2f94bffd2e4"
+    }
+  ],
+  "scientific_boundary": "Native outputs are normalized structural predictions, not absolute PET counts.",
+  "target_assisted_boundary": "Hi-TrAC-1D-assisted EPCOT/ChromaFold outputs are sensitivity analyses and ineligible for de novo ranking."
+}

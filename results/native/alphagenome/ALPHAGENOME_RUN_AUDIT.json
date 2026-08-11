@@ -1,0 +1,63 @@
+{
+  "caveat": "released human contact-map metadata contains no K562 track",
+  "common_input_sha256": "6040cf45f0b75005a6a18c4e1f5e19da493ccbad5a1e476bbd87e0c14ea865bb",
+  "input": "DNA only",
+  "k562_matched": false,
+  "metadata_csv_sha256": "7fdee7e729069ec58445d02b4744ad95b9096fd8ec79fe672a1805312dbf7110",
+  "model": "official AlphaGenome all-fold local weights",
+  "native_npz_sha256": "5c3a4c3e7bbbbfb411e4df64b3867aaab7ba988d03e6daf44486f24e085b88d0",
+  "native_resolution_bp": 2048,
+  "native_shape": [
+    512,
+    512,
+    28
+  ],
+  "ontology_terms_requested": [
+    "CL:0002620",
+    "EFO:0001187",
+    "EFO:0001196",
+    "EFO:0002784",
+    "EFO:0002791",
+    "EFO:0002824",
+    "EFO:0003042",
+    "EFO:0003045",
+    "EFO:0005903",
+    "EFO:0007073",
+    "EFO:0009318",
+    "EFO:0009747"
+  ],
+  "requested_interval_0based_half_open": [
+    4449712,
+    5498288
+  ],
+  "returned_interval_0based_half_open": [
+    4449712,
+    5498288
+  ],
+  "status": "COMPLETE",
+  "summary": {
+    "deletion": {
+      "maximum": 2.8125,
+      "mean": -0.2469540536403656,
+      "minimum": -5.75,
+      "standard_deviation": 0.43630966544151306
+    },
+    "reference": {
+      "maximum": 2.6875,
+      "mean": -0.2483184039592743,
+      "minimum": -5.75,
+      "standard_deviation": 0.4375292956829071
+    }
+  },
+  "tracks_returned": 28,
+  "variant": {
+    "alternate_allele_length": 1,
+    "chromosome": "chr3",
+    "deleted_interval_0based_half_open": [
+      4976067,
+      4976790
+    ],
+    "position_1based_anchor": 4976067,
+    "reference_allele_length": 724
+  }
+}

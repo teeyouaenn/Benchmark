@@ -1,0 +1,47 @@
+{
+  "checkpoint_sha256": "460aa8117a77d8be89eeaf2e8ded702d922ddccac22bee0fdd7a952ac8851362",
+  "common_input_sha256": "6040cf45f0b75005a6a18c4e1f5e19da493ccbad5a1e476bbd87e0c14ea865bb",
+  "inference_ensemble": "forward plus reverse-complement average, shift 0",
+  "input": "DNA only",
+  "input_interval_0based_half_open": [
+    4318640,
+    5629360
+  ],
+  "k562_matched": false,
+  "model": "official AkitaV2 fold-2 human checkpoint",
+  "native_bin_bp": 2048,
+  "native_hdf5_sha256": "a3b0ef8f1e5cc89d205c5946f7b9d250730dae5061aecc3a64d04216cff096c3",
+  "native_scientific_scale": "processed log observed/expected",
+  "native_shape": [
+    2,
+    130305,
+    5
+  ],
+  "output_interval_0based_half_open": [
+    4449712,
+    5498288
+  ],
+  "params_sha256": "7bac19679644f7e35c4ca5eb23d180e6d8dc4ba3c55ebccd48e301427c2ed7b2",
+  "status": "COMPLETE",
+  "summary": {
+    "deletion": {
+      "maximum": 1.8421399593353271,
+      "mean": -0.2351585477590561,
+      "minimum": -1.170945167541504,
+      "standard_deviation": 0.40515774488449097
+    },
+    "wt": {
+      "maximum": 2.0169684886932373,
+      "mean": -0.246440127491951,
+      "minimum": -1.2519909143447876,
+      "standard_deviation": 0.42039361596107483
+    }
+  },
+  "target_channels": [
+    "HFF",
+    "H1-ESC",
+    "GM12878",
+    "IMR-90",
+    "HCT116"
+  ]
+}

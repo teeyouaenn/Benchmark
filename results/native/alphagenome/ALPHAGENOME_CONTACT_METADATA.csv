@@ -1,0 +1,29 @@
+name,strand,Assay title,ontology_curie,biosample_name,biosample_type,data_source
+4dn:4DNFI9GMP2J8,.,Micro-C,EFO:0003042,H1-hESC,cell_line,4dnucleome
+4dn:4DNFI9FVHJZQ,.,Micro-C,EFO:0009318,HFFc6,cell_line,4dnucleome
+4dn:4DNFIFLDVASC,.,in situ Hi-C,EFO:0002824,HCT116,cell_line,4dnucleome
+4dn:4DNFIJTOIGOI,.,in situ Hi-C,EFO:0001196,IMR-90,cell_line,4dnucleome
+4dn:4DNFIXP4QG5B,.,in situ Hi-C,EFO:0002784,GM12878,cell_line,4dnucleome
+4dn:4DNFI2VYSX9M,.,in situ Hi-C,EFO:0007073,CyT49,cell_line,4dnucleome
+4dn:4DNFI4DCV74I,.,in situ Hi-C,EFO:0003045,H9,cell_line,4dnucleome
+4dn:4DNFI5IHU27G,.,in situ Hi-C,EFO:0005903,KBM-7,cell_line,4dnucleome
+4dn:4DNFI6HDY7WZ,.,in situ Hi-C,EFO:0003042,H1-hESC,cell_line,4dnucleome
+4dn:4DNFI82R42AD,.,in situ Hi-C,EFO:0003042,H1-hESC,cell_line,4dnucleome
+4dn:4DNFI8RH55DO,.,in situ Hi-C,EFO:0003045,H9,cell_line,4dnucleome
+4dn:4DNFIB59T7NN,.,in situ Hi-C,EFO:0009318,HFFc6,cell_line,4dnucleome
+4dn:4DNFIBM9QCFG,.,in situ Hi-C,EFO:0002791,HeLa-S3,cell_line,4dnucleome
+4dn:4DNFIIOUG5RF,.,in situ Hi-C,EFO:0003045,H9,cell_line,4dnucleome
+4dn:4DNFIK3NF6R2,.,in situ Hi-C,EFO:0007073,CyT49,cell_line,4dnucleome
+4dn:4DNFILP99QJS,.,in situ Hi-C,EFO:0002824,HCT116,cell_line,4dnucleome
+4dn:4DNFIMDOXUT8,.,Dilution Hi-C,CL:0002620,skin fibroblast,cell_line,4dnucleome
+4dn:4DNFINFQV712,.,in situ Hi-C,EFO:0003042,H1-hESC,cell_line,4dnucleome
+4dn:4DNFINQYW56E,.,Micro-C,EFO:0003042,H1-hESC,cell_line,4dnucleome
+4dn:4DNFINXSKZ4F,.,in situ Hi-C,EFO:0007073,CyT49,cell_line,4dnucleome
+4dn:4DNFIPO1DGLH,.,in situ Hi-C,EFO:0003045,H9,cell_line,4dnucleome
+4dn:4DNFIRO3DQCO,.,in situ Hi-C,EFO:0003045,H9,cell_line,4dnucleome
+4dn:4DNFIS6HAUPP,.,in situ Hi-C,EFO:0001187,HepG2,cell_line,4dnucleome
+4dn:4DNFIT5YVTLO,.,in situ Hi-C,EFO:0003045,H9,cell_line,4dnucleome
+4dn:4DNFIVKQADWM,.,in situ Hi-C,EFO:0009747,GM25256,in_vitro_differentiated_cells,4dnucleome
+4dn:4DNFIW8IXCX1,.,in situ Hi-C,EFO:0003042,H1-hESC,cell_line,4dnucleome
+4dn:4DNFIXOWKAM6,.,in situ Hi-C,EFO:0007073,CyT49,cell_line,4dnucleome
+4dn:4DNFIYGPDLKF,.,in situ Hi-C,EFO:0009747,GM25256,in_vitro_differentiated_cells,4dnucleome

@@ -1,0 +1,74 @@
+[
+  {
+    "model": "Experimental Hi-TrAC",
+    "native_values_compared": 116964,
+    "wt_deletion_pearson": 0.6648390303018534,
+    "mean_absolute_native_delta": 0.0820348642457914,
+    "rms_native_delta": 0.26121977220077297,
+    "rms_delta_over_wt_sd": 0.8199109986338912,
+    "warning": "Within-model perturbation magnitude only; native scales are not comparable across rows."
+  },
+  {
+    "model": "AkitaV2",
+    "native_values_compared": 27060,
+    "wt_deletion_pearson": 0.9837343118201517,
+    "mean_absolute_native_delta": 0.05183081856356756,
+    "rms_native_delta": 0.06871880163133605,
+    "rms_delta_over_wt_sd": 0.2574336217096718,
+    "warning": "Within-model perturbation magnitude only; native scales are not comparable across rows."
+  },
+  {
+    "model": "Orca",
+    "native_values_compared": 7396,
+    "wt_deletion_pearson": 0.9715563812641883,
+    "mean_absolute_native_delta": 0.06151321860762658,
+    "rms_native_delta": 0.08176526666776411,
+    "rms_delta_over_wt_sd": 0.2770963975598575,
+    "warning": "Within-model perturbation magnitude only; native scales are not comparable across rows."
+  },
+  {
+    "model": "EPCOT",
+    "native_values_compared": 115600,
+    "wt_deletion_pearson": 0.9138277308973572,
+    "mean_absolute_native_delta": 0.15395597416121243,
+    "rms_native_delta": 0.20839000212018854,
+    "rms_delta_over_wt_sd": 0.4788674852951597,
+    "warning": "Within-model perturbation magnitude only; native scales are not comparable across rows."
+  },
+  {
+    "model": "AlphaGenome",
+    "native_values_compared": 27556,
+    "wt_deletion_pearson": 0.9845485049664173,
+    "mean_absolute_native_delta": 0.05039113423642269,
+    "rms_native_delta": 0.06962716335897777,
+    "rms_delta_over_wt_sd": 0.1768948231564146,
+    "warning": "Within-model perturbation magnitude only; native scales are not comparable across rows."
+  },
+  {
+    "model": "DeepC",
+    "native_values_compared": 13668,
+    "wt_deletion_pearson": 0.9747661974289648,
+    "mean_absolute_native_delta": 0.21137163471261555,
+    "rms_native_delta": 0.2481424994932717,
+    "rms_delta_over_wt_sd": 0.2527292055027293,
+    "warning": "Within-model perturbation magnitude only; native scales are not comparable across rows."
+  },
+  {
+    "model": "ChromaFold motif",
+    "native_values_compared": 13600,
+    "wt_deletion_pearson": 0.7340909096820344,
+    "mean_absolute_native_delta": 0.5538860436322712,
+    "rms_native_delta": 0.7689559576566144,
+    "rms_delta_over_wt_sd": 0.8629416795485295,
+    "warning": "Within-model perturbation magnitude only; native scales are not comparable across rows."
+  },
+  {
+    "model": "Chimaera",
+    "native_values_compared": 16384,
+    "wt_deletion_pearson": 0.9228629884454012,
+    "mean_absolute_native_delta": 0.07273021135370072,
+    "rms_native_delta": 0.12012932531392358,
+    "rms_delta_over_wt_sd": 0.3863173284849055,
+    "warning": "Within-model perturbation magnitude only; native scales are not comparable across rows."
+  }
+]

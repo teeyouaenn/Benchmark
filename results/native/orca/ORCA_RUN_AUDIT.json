@@ -1,0 +1,53 @@
+{
+  "cell_types": [
+    "H1-ESC",
+    "HFF"
+  ],
+  "common_input_sha256": "6040cf45f0b75005a6a18c4e1f5e19da493ccbad5a1e476bbd87e0c14ea865bb",
+  "input": "DNA only",
+  "input_window_0based_half_open": [
+    4474000,
+    5474000
+  ],
+  "k562_matched": false,
+  "model": "official Orca 1-Mb checkpoints",
+  "native_bin_bp": 4000,
+  "native_npz_sha256": "e7f8305d608d054c184c14ad032b4934e089c70789da99b6c7f43983f6bd5d15",
+  "native_pth_sha256": "d54f384da414658ceed57a916d6d9bd49dffbe7794d245b54b04b718b940da73",
+  "native_scientific_scale": "normalized contact enrichment",
+  "native_shape": [
+    250,
+    250
+  ],
+  "status": "COMPLETE",
+  "summary": {
+    "h1esc": {
+      "deletion": {
+        "maximum": 2.2411117553710938,
+        "mean": -0.13525892794132233,
+        "minimum": -0.8355658054351807,
+        "standard_deviation": 0.3825713098049164
+      },
+      "wt": {
+        "maximum": 1.9701093435287476,
+        "mean": -0.14845962822437286,
+        "minimum": -0.8359190225601196,
+        "standard_deviation": 0.3679262697696686
+      }
+    },
+    "hff": {
+      "deletion": {
+        "maximum": 3.029217481613159,
+        "mean": -0.17061391472816467,
+        "minimum": -0.9929506778717041,
+        "standard_deviation": 0.4418553411960602
+      },
+      "wt": {
+        "maximum": 2.984114170074463,
+        "mean": -0.17799019813537598,
+        "minimum": -0.9880539178848267,
+        "standard_deviation": 0.4529609978199005
+      }
+    }
+  }
+}

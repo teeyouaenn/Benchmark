@@ -1,0 +1,11 @@
+{
+  "source": "Ensembl REST overlap endpoint, GRCh38, queried 2026-08-11",
+  "source_url": "https://rest.ensembl.org/overlap/region/human/3:4803502-5144387?feature=gene",
+  "coordinate_convention": "1-based inclusive as returned by Ensembl",
+  "genes": [
+    {"name": "ITPR1", "start": 4493345, "end": 4847518, "strand": 1},
+    {"name": "BHLHE40-AS1", "start": 4896806, "end": 4980414, "strand": -1},
+    {"name": "BHLHE40", "start": 4978715, "end": 4985323, "strand": 1},
+    {"name": "ARL8B", "start": 5122231, "end": 5180916, "strand": 1}
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "checkpoint": {
+    "data_params_sha256": "4881b161c27208bfa1be4e3afcf03b8fd0cc2e353bd3b111973a31333b753249",
+    "dna_encoder_sha256": "ae84398bcb07bf724c0097386e4936b8ce32f49d4d36b19f596bc67f72e94bba",
+    "hic_decoder_sha256": "538bc8aaa7cb208e5c524072e590c9b700ad572ea368561cbf88254951e1cc4c",
+    "model_params_sha256": "de8b72e70023c3cce51ff5168ec288f395fb3d97e344d5ea71b6cd968f3cea24"
+  },
+  "common_inputs_sha256": "6040cf45f0b75005a6a18c4e1f5e19da493ccbad5a1e476bbd87e0c14ea865bb",
+  "deletion_status": "inferred clean sgRNA-bounded deletion; exact clone junction unavailable",
+  "inference": {
+    "forward_reverse_complement_average": true,
+    "implementation_equivalence": "direct TorchScript composition of released dna_encoder.pt and hic_decoder.pt; identical composition and RC averaging to the released ModelContainer"
+  },
+  "native_prediction": {
+    "description": "standardized log-distance-residual contact signal",
+    "distance_step_bp": 4096,
+    "dna_input_bp": 524288,
+    "fragment_shape": [
+      32,
+      128
+    ],
+    "geometry": "rotated distance-coordinate image",
+    "mapped_span_bp": 262144,
+    "output_file": "/data/vinhtb/activhitracMIX_stage/experiments/activehitrac_1k/competitor_figure3d_native_20260811/native/chimaera/CHIMAERA_NATIVE_ROTATED_MAPS.npz",
+    "output_sha256": "e9ce7635e48de10c083b7618f956541b1d1f28b68edeeba7618be2f94bffd2e4",
+    "position_bin_bp": 2048,
+    "shape_per_condition": [
+      4,
+      32,
+      128
+    ]
+  },
+  "scientific_status": "OFFICIAL_HUMAN_RELEASE_NO_K562_SPECIFIC_CHANNEL",
+  "source": {
+    "git_head": "182d2943c0a154c6d6102aad31529f697d64d489"
+  },
+  "status": "COMPLETE",
+  "summaries": {
+    "deletion": {
+      "max": 0.8519650101661682,
+      "mean": -0.034168094396591187,
+      "min": -1.181280493736267,
+      "sd": 0.2780310809612274
+    },
+    "difference": {
+      "max": 0.6587453484535217,
+      "mean": -0.002952447161078453,
+      "min": -1.2498255968093872,
+      "sd": 0.12009304016828537
+    },
+    "wt": {
+      "max": 2.0132205486297607,
+      "mean": -0.031215645372867584,
+      "min": -1.438258171081543,
+      "sd": 0.31096023321151733
+    }
+  }
+}

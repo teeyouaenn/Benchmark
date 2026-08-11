@@ -1,0 +1,13 @@
+_runtime/
+.tmp/
+__pycache__/
+results/inputs/*.npz
+*.log
+*.tmp
+*.tar.gz
+*.pt
+*.pth.tar
+*.statedict
+*.fa
+*.fa.gz
+*.fai

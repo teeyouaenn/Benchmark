@@ -1,0 +1,8 @@
+model	repository	git_revision
+AkitaV2	https://github.com/calico/basenji.git	06ce5d387e20b47184d05433b3983163c5f923cd
+DeepC	https://github.com/Hughes-Genome-Group/deepC.git	7a056b1d2c099c0cd1959ec7fc9fd1d761093f3b
+Orca	https://github.com/jzhoulab/orca.git	42aea5eed4214641d717b02351389d631f01c1d8
+EPCOT	https://github.com/liu-bioinfo-lab/EPCOT.git	aec8b823e1c0926744e6a455a8a5ba7b2df9348d
+ChromaFold	https://github.com/viannegao/ChromaFold.git	1c5dd9b07d851d196c31c26024d90c0335f1bd75
+AlphaGenome	https://github.com/google-deepmind/alphagenome.git	327ea82371197812b337aed8e9e75df63ce5e429
+Chimaera	https://github.com/ashkolikov/chimaera.git	182d2943c0a154c6d6102aad31529f697d64d489
