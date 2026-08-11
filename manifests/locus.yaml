@@ -1,4 +1,5 @@
 project: BHLHE40_Figure3D_native_model_benchmark
+benchmark_question: cross_cell_type_transfer_to_k562
 genome: hg38
 chromosome: chr3
 published_display_locus:
@@ -34,6 +35,11 @@ conditions:
     deletion: >-
       deleted DNA plus the same control K562 accessibility experiment shifted
       with its attached derivative-chromosome DNA across the inferred junction
+    transfer_contract: >-
+      Use K562 DNA and K562 DNase wherever the released architecture natively
+      accepts accessibility. Preserve the released non-K562 or generic output
+      head when no K562 checkpoint exists. Do not add an unsupported DNase branch
+      to DNA-only models. Treat DeepC as the K562-matched reference.
   target_assisted_surrogate:
     status: non_de_novo_not_primary
     description: >-

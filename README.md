@@ -5,6 +5,13 @@ wild-type and inferred BHLHE40-boundary-deletion sequences corresponding to
 Figure 3D of the Hi-TrAC NAR paper. It preserves every model's highest released
 native resolution, geometry, cell-type channel and scientific output scale.
 
+The primary scientific question is **cross-cell-type transfer to the K562
+locus**. K562 DNA and control K562 DNase are supplied wherever the released
+architecture accepts accessibility. Models that accept DNA only receive K562
+reference/edited sequence; their fixed released output head is retained rather
+than modifying the model to accept an unsupported DNase channel. DeepC's
+released K562 checkpoint is retained as the one K562-matched reference.
+
 ![Dense native outputs](figures/FIGURE3D_DENSE_NATIVE_OUTPUTS.png)
 
 ## Scientific boundary
@@ -14,6 +21,15 @@ The primary comparison is strictly de novo:
 - WT: reference DNA plus control K562 DNase where the model accepts accessibility.
 - Deletion: inferred deletion DNA plus the same control K562 DNase shifted with
   its attached DNA across the derivative-chromosome junction.
+
+This means “cross-cell transfer” has two explicitly separated forms:
+
+- **accessibility-conditioned transfer:** an unmatched released contact head is
+  evaluated using K562 DNase (EPCOT and the ChromaFold motif input adapter);
+- **sequence-only checkpoint transfer:** the model has no accessibility input,
+  so K562 sequence is evaluated through its released non-K562/generic head.
+
+No synthetic DNase branch was added to a DNA-only architecture.
 
 The deletion is the 723-bp clean **SpCas9 cut-to-cut** interval inferred from the
 two published guides, hg38 `chr3:4,976,067-4,976,790` in 0-based half-open

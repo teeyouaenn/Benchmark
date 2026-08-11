@@ -15,9 +15,12 @@ counts, and no single cross-model PCC was manufactured from incompatible target
 normalizations.
 
 All seven models produced a nonzero deletion response. That establishes that the
-inferred sequence perturbation reached every inference path. It does **not** rank
-their biological accuracy: only DeepC has a K562-matched contact checkpoint;
-the remaining heads are HFF/H1/other-cell-type or generic-human releases.
+inferred sequence perturbation reached every inference path. The benchmark is
+now explicitly framed as **cross-cell-type transfer to K562**: K562 sequence and,
+where supported, K562 DNase are supplied to released checkpoints without
+retraining. It does **not** rank their biological accuracy: only DeepC has a
+K562-matched contact checkpoint; the remaining heads are HFF/H1/other-cell-type
+or generic-human releases.
 
 ## 1. Experimental reference and perturbation
 
@@ -68,6 +71,14 @@ for sequence-perturbation inference.
 - The ChromaFold motif track is shifted in the same manner. The novel junction
   was not rescanned for a new motif, which is explicitly recorded as a limitation.
 
+The native input signature of every released model is respected. DNase is not
+injected into AkitaV2, DeepC, Orca, AlphaGenome or Chimaera because those
+inference interfaces do not accept it. Their non-K562/generic output heads are
+therefore sequence-only checkpoint-transfer tests. EPCOT and ChromaFold accept
+cell-state accessibility information and are evaluated with K562 DNase; they
+are accessibility-conditioned cross-cell-transfer tests. DeepC is the sole
+K562-checkpoint reference rather than a transfer case.
+
 ### Secondary target-assisted sensitivity arm
 
 For EPCOT and ChromaFold only, the experimental deletion Hi-TrAC 1D endpoint
@@ -83,19 +94,20 @@ shaped encoding of the experimental 1D perturbation.
 
 ## 3. Model-specific execution
 
-| Model | Released checkpoint/channel used | Native geometry and scale | K562 match |
-|---|---|---|---|
-| AkitaV2 | fold-2 human, HFF channel | 512-bin, 2,048-bp processed log(O/E); diagonal offsets 0-1 are masked | No |
-| DeepC | K562 5-kb checkpoint | 83 center poles x 201 partner offsets; normalized skeleton profile | **Yes** |
-| Orca | 1-Mb HFF checkpoint | 250 x 250 at 4 kb; normalized contact enrichment | No |
-| EPCOT | HFF Micro-C 1-kb head | 500 x 500 upper-triangle map; model-native predicted O/E scale | Accessibility only |
-| ChromaFold motif | motif/no-coaccess checkpoint | 36 centers x 400 partners at 10 kb; HiC-DC+ Z-score | No; DNase is a scATAC proxy |
-| AlphaGenome | HFFc6 Micro-C track | 512 x 512 at 2,048 bp; relative contact output | No K562 track released |
-| Chimaera | official human release | four 32 x 128 rotated distance-coordinate images | No K562 channel |
+| Model | Released checkpoint/channel used | Native geometry and scale | Native K562 input | Transfer interpretation |
+|---|---|---|---|---|
+| AkitaV2 | fold-2 human, HFF channel | 512-bin, 2,048-bp processed log(O/E); diagonal offsets 0-1 masked | DNA | Sequence-only HFF-head transfer |
+| DeepC | K562 5-kb checkpoint | 83 center poles x 201 partner offsets; normalized skeleton profile | DNA | **K562-matched reference** |
+| Orca | 1-Mb HFF checkpoint | 250 x 250 at 4 kb; normalized contact enrichment | DNA | Sequence-only HFF-head transfer |
+| EPCOT | HFF Micro-C 1-kb head | 500 x 500 upper-triangle map; model-native predicted O/E | DNA + K562 DNase | Accessibility-conditioned transfer |
+| ChromaFold motif | motif/no-coaccess checkpoint | 36 centers x 400 partners at 10 kb; HiC-DC+ Z-score | K562 DNase proxy + hg38 motif | Accessibility-conditioned transfer; bulk DNase substitutes for scATAC |
+| AlphaGenome | HFFc6 Micro-C track | 512 x 512 at 2,048 bp; relative contact output | DNA | Sequence-only HFFc6-head transfer |
+| Chimaera | official human release | four 32 x 128 rotated distance-coordinate images | DNA | Sequence-only generic-human transfer |
 
 For multi-output releases, the overview uses HFF-like Micro-C channels to avoid
-silently averaging incompatible cell types. The complete AlphaGenome metadata
-table records all 28 returned contact tracks.
+silently averaging incompatible cell types. These are deliberately retained as
+unmatched transfer heads, not described as K562 predictions. The complete
+AlphaGenome metadata table records all 28 returned contact tracks.
 
 ## 4. Native perturbation response
 

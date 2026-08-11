@@ -9,6 +9,8 @@
 - [x] Authors' supplemental repository and GEO GSE208085 checked; no clone-resolved junction found.
 - [x] Fixed-length derivative chromosome constructed by delete/join/tail extension.
 - [x] Control K562 DNase used for the primary deletion arm and shifted with attached DNA.
+- [x] Cross-cell-transfer contract explicit: K562 DNase used only by architectures that natively accept accessibility; DNA-only models were not altered.
+- [x] DeepC K562 checkpoint separated as the K562-matched reference rather than labelled transfer.
 - [x] Target-derived Hi-TrAC 1D arm isolated and labelled non-de-novo.
 - [x] AkitaV2 official fold-2 checkpoint complete.
 - [x] DeepC official K562 5-kb checkpoint complete.
