@@ -1,6 +1,6 @@
 # BHLHE40 deletion-breakpoint re-audit
 
-**Date:** 11 August 2026  
+**Date:** 11 August 2026
 **Verdict:** the registered 723-bp interval is correct as an **inferred clean
 SpCas9 cut-to-cut deletion**. It is not proven to be the exact clone junction.
 
