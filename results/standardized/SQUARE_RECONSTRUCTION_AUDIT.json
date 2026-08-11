@@ -1,0 +1,240 @@
+{
+  "status": "PASS",
+  "scientific_contract": {
+    "standardized_property": "square endpoint-by-endpoint geometry over the same locus",
+    "not_standardized": [
+      "native bin size",
+      "scientific target scale",
+      "cell-type output head",
+      "predicted distance range",
+      "model-specific missing cells"
+    ],
+    "no_cross_model_value_normalization": true,
+    "no_fitted_rescaling": true,
+    "experimental_display": {
+      "transform": "log10(PET + 1), matching the cLoops2/NAR-style display",
+      "vmin": 0.1,
+      "vmax": 0.8,
+      "minimum_color": "white",
+      "maximum_color": "red",
+      "raw_pet_matrices_preserved_in_archive": true
+    }
+  },
+  "source_workflows": {
+    "deepc": "C.Origami Supplementary Figure 8 geometry: mirror, rotate, crop; implemented equivalently by placing every pole value at its genomic endpoint pair.",
+    "chromafold": "CBIGR/bulk_hic_benchmark bedpe_norm.py: expand 400-value V-stripes and average duplicate genomic pairs.",
+    "chimaera": "Released midpoint-distance geometry inverted to endpoint pairs; overlapping fragment estimates averaged."
+  },
+  "panels": [
+    {
+      "slug": "experimental",
+      "model": "Experimental Hi-TrAC",
+      "source_geometry": "342 x 342 square raw-PET matrix",
+      "square_shape": [
+        342,
+        342
+      ],
+      "bin_bp": 1000,
+      "start_bp": 4803000,
+      "end_bp": 5145000,
+      "native_scale": "cLoops2 display: log10(PET + 1)",
+      "display_min": 0.1,
+      "display_max": 0.8,
+      "difference_absolute_max": 1.2041199826559248,
+      "joint_finite_fraction": 1.0,
+      "symmetry_max_abs_error": 0.0,
+      "reconstruction": "Already a square 1-kb matrix; no geometric reconstruction.",
+      "value_normalization_or_fitted_rescaling": false
+    },
+    {
+      "slug": "akita_v2",
+      "model": "AkitaV2",
+      "source_geometry": "flattened upper triangle",
+      "square_shape": [
+        166,
+        166
+      ],
+      "bin_bp": 2048,
+      "start_bp": 4804016,
+      "end_bp": 5143984,
+      "native_scale": "processed log(O/E)",
+      "display_min": -0.9644662141799927,
+      "display_max": 0.9036331176757812,
+      "difference_absolute_max": 0.2174835205078125,
+      "joint_finite_fraction": 0.9820002903178982,
+      "symmetry_max_abs_error": 0.0,
+      "reconstruction": "Released upper triangle mirrored into a square; masked diagonals remain missing.",
+      "value_normalization_or_fitted_rescaling": false
+    },
+    {
+      "slug": "deepc",
+      "model": "DeepC",
+      "source_geometry": "83 center poles x 201 partner offsets",
+      "square_shape": [
+        68,
+        68
+      ],
+      "bin_bp": 5000,
+      "start_bp": 4805000,
+      "end_bp": 5145000,
+      "native_scale": "normalized center-anchored interaction profile",
+      "display_min": 3.0334500074386597,
+      "display_max": 6.77869987487793,
+      "difference_absolute_max": 0.4226999282836914,
+      "joint_finite_fraction": 1.0,
+      "symmetry_max_abs_error": 0.0,
+      "reconstruction": "Coordinate-equivalent implementation of Supplementary Figure 8: mirror poles, rotate to endpoint coordinates, crop, and average duplicate pair estimates; no value rescaling.",
+      "value_normalization_or_fitted_rescaling": false
+    },
+    {
+      "slug": "orca",
+      "model": "Orca",
+      "source_geometry": "dense symmetric matrix",
+      "square_shape": [
+        86,
+        86
+      ],
+      "bin_bp": 4000,
+      "start_bp": 4802000,
+      "end_bp": 5146000,
+      "native_scale": "normalized contact enrichment",
+      "display_min": -0.8134788870811462,
+      "display_max": 1.5133109092712402,
+      "difference_absolute_max": 0.4694198966026306,
+      "joint_finite_fraction": 1.0,
+      "symmetry_max_abs_error": 0.0,
+      "reconstruction": "Native square matrix cropped by genomic coordinate.",
+      "value_normalization_or_fitted_rescaling": false
+    },
+    {
+      "slug": "epcot",
+      "model": "EPCOT",
+      "source_geometry": "flattened upper triangle",
+      "square_shape": [
+        340,
+        340
+      ],
+      "bin_bp": 1000,
+      "start_bp": 4804000,
+      "end_bp": 5144000,
+      "native_scale": "model-native predicted O/E",
+      "display_min": -3.7490074634552,
+      "display_max": -0.4292418956756592,
+      "difference_absolute_max": 1.1284897327423096,
+      "joint_finite_fraction": 1.0,
+      "symmetry_max_abs_error": 0.0,
+      "reconstruction": "Released upper triangle mirrored into a square.",
+      "value_normalization_or_fitted_rescaling": false
+    },
+    {
+      "slug": "chromafold",
+      "model": "ChromaFold motif",
+      "source_geometry": "36 center V-stripes x 400 partner offsets",
+      "square_shape": [
+        34,
+        34
+      ],
+      "bin_bp": 10000,
+      "start_bp": 4810000,
+      "end_bp": 5150000,
+      "native_scale": "HiC-DC+ normalized Z-score",
+      "display_min": -0.18830221891403198,
+      "display_max": 3.5398203134536743,
+      "difference_absolute_max": 0.9938374757766724,
+      "joint_finite_fraction": 0.9705882352941176,
+      "symmetry_max_abs_error": 0.0,
+      "reconstruction": "Associated benchmark conversion: expand each V-stripe into genomic pairs and average duplicate (start, end) estimates; diagonal remains missing; no value rescaling.",
+      "value_normalization_or_fitted_rescaling": false
+    },
+    {
+      "slug": "alphagenome",
+      "model": "AlphaGenome",
+      "source_geometry": "dense symmetric matrix",
+      "square_shape": [
+        166,
+        166
+      ],
+      "bin_bp": 2048,
+      "start_bp": 4804016,
+      "end_bp": 5143984,
+      "native_scale": "relative contact output",
+      "display_min": -1.2734375,
+      "display_max": 1.6953125,
+      "difference_absolute_max": 0.5458984375,
+      "joint_finite_fraction": 1.0,
+      "symmetry_max_abs_error": 0.0,
+      "reconstruction": "Native square matrix cropped by genomic coordinate.",
+      "value_normalization_or_fitted_rescaling": false
+    },
+    {
+      "slug": "chimaera",
+      "model": "Chimaera",
+      "source_geometry": "four overlapping 32 x 128 distance-position images",
+      "square_shape": [
+        166,
+        166
+      ],
+      "bin_bp": 2048,
+      "start_bp": 4803584,
+      "end_bp": 5143552,
+      "native_scale": "standardized log-distance-residual",
+      "display_min": -1.2743911147117615,
+      "display_max": 1.9922045469284058,
+      "difference_absolute_max": 1.2287261188030243,
+      "joint_finite_fraction": 0.3042531572071418,
+      "symmetry_max_abs_error": 0.0,
+      "reconstruction": "Invert native midpoint-distance coordinates to endpoint pairs and average overlapping fragments; unsupported distances remain missing; no interpolation or value rescaling.",
+      "value_normalization_or_fitted_rescaling": false
+    }
+  ],
+  "reconstruction_diagnostics": {
+    "deepc_wt": {
+      "source_values_in_crop": 4624,
+      "unique_pair_cells": 2346,
+      "duplicate_pair_cells": 2278,
+      "maximum_duplicate_native_spread": 3.247799873352051,
+      "upper_triangle_coverage_fraction": 1.0
+    },
+    "deepc_deletion": {
+      "source_values_in_crop": 4624,
+      "unique_pair_cells": 2346,
+      "duplicate_pair_cells": 2278,
+      "maximum_duplicate_native_spread": 3.3564999103546143,
+      "upper_triangle_coverage_fraction": 1.0
+    },
+    "chromafold_wt": {
+      "source_values_in_crop": 1122,
+      "unique_pair_cells": 561,
+      "duplicate_pair_cells": 561,
+      "maximum_duplicate_native_spread": 2.4018699526786804,
+      "upper_triangle_coverage_fraction": 0.9428571428571428
+    },
+    "chromafold_deletion": {
+      "source_values_in_crop": 1122,
+      "unique_pair_cells": 561,
+      "duplicate_pair_cells": 561,
+      "maximum_duplicate_native_spread": 2.357069194316864,
+      "upper_triangle_coverage_fraction": 0.9428571428571428
+    },
+    "chimaera_wt": {
+      "source_values_in_crop": 8174,
+      "unique_pair_cells": 4192,
+      "duplicate_pair_cells": 3982,
+      "maximum_duplicate_native_spread": 0.5150676965713501,
+      "upper_triangle_coverage_fraction": 0.3024312820142847
+    },
+    "chimaera_deletion": {
+      "source_values_in_crop": 8174,
+      "unique_pair_cells": 4192,
+      "duplicate_pair_cells": 3982,
+      "maximum_duplicate_native_spread": 0.3069576025009155,
+      "upper_triangle_coverage_fraction": 0.3024312820142847
+    }
+  },
+  "artifacts": {
+    "results/standardized/FIGURE3D_SQUARE_MATRICES.npz": "5912032429c07fa7c16a68224184497926eadfdfeb71dee38825503296e073fb",
+    "results/standardized/SQUARE_MATRIX_SCALE_AND_GEOMETRY.csv": "82b9e4be64b80e8eb172b0eb6ee76d27b4145f88dad73c38ed56b02918bf4319",
+    "figures/FIGURE3D_GEOMETRY_STANDARDIZED_SQUARES.png": "cdadb014a12663cf48fd8abcd5260420859308bff451c3c2509331203cafd8ba",
+    "figures/FIGURE3D_GEOMETRY_STANDARDIZED_SQUARES.svg": "76cbef9a3a5eb44adaf56d976af5561741f8dd7610c1a0d4957ab4c8621eab4a"
+  }
+}

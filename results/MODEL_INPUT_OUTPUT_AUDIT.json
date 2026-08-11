@@ -89,6 +89,12 @@
   ],
   "scientific_boundary": "Native outputs are normalized structural predictions, not absolute PET counts.",
   "target_assisted_boundary": "Hi-TrAC-1D-assisted EPCOT/ChromaFold outputs are sensitivity analyses and ineligible for de novo ranking.",
+  "geometry_standardized_square_outputs": {
+    "status": "PASS",
+    "models_plus_experiment": 8,
+    "archive_sha256": "5912032429c07fa7c16a68224184497926eadfdfeb71dee38825503296e073fb",
+    "audit_sha256": "0fc739514b78f3b1535b20c79c1f9e1a7f9a340fd8d78f20155483fde96b8fa7"
+  },
   "active_native_artifacts_hashed": 21,
   "sha256_manifest": "C:\\Users\\vinhtb\\Desktop\\Bioconjugation\\Benchmark\\results\\NATIVE_OUTPUT_SHA256SUMS.txt"
 }

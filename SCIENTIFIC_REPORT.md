@@ -154,10 +154,48 @@ on this single case study.
    Gviz locus annotations, a one-dimensional contact marginal and the exact
    paper locus extracted from the user's historical `K562.hic` at native 1-kb
    resolution using Juicer `observed NONE`.
+7. `FIGURE3D_GEOMETRY_STANDARDIZED_SQUARES.png` represents all seven predictors
+   as square endpoint-by-endpoint matrices over the same locus. It complements,
+   rather than replaces, the native-geometry figures.
 
 WT and deletion panels share a color scale within each row. Difference panels
 use a row-specific symmetric scale. Color intensity must not be compared across
 rows because every model predicts a different transformed quantity.
+
+### 5.1 Geometry-standardized square comparison
+
+The square comparison follows C.Origami Supplementary Figure 8 and the
+associated 2026 bulk Hi-C benchmark, but deliberately standardizes **geometry
+only**. It does not reproduce C.Origami's distance-stratified target
+normalization or 128-bin image resizing because either would alter the model's
+native scientific values.
+
+- DeepC's 201-value center poles are mirrored and placed at their genomic
+  endpoint pairs, which is coordinate-equivalent to the supplement's
+  mirror/45-degree-rotation/crop workflow. Duplicate left/right estimates are
+  averaged. The resulting displayed matrix is complete at 5 kb.
+- ChromaFold's 400-value V-stripes are expanded into genomic pairs and duplicate
+  estimates are averaged exactly as in `CBIGR/bulk_hic_benchmark`'s
+  `bedpe_norm.py`. The intentionally unpredicted self-diagonal remains missing.
+- Chimaera's midpoint-distance pixels are inverted to endpoint pairs. Values
+  from overlapping fragments are averaged, while separations outside the
+  released 8-135-kb output band remain missing rather than being imputed.
+- AkitaV2 and EPCOT upper triangles are mirrored; Orca and AlphaGenome are
+  already dense square matrices.
+
+All text uses Arial. WT and deletion share one exact native-scale colorbar in
+each row; the difference has a symmetric row-specific scale. Predictor color
+limits are the exact finite minimum and maximum after coordinate assembly, not
+quantiles. The experimental row alone uses the paper/cLoops2 display transform
+`log10(PET + 1)` with fixed 0.1-0.8 clipping, white at the minimum and red at the
+maximum. The raw experimental PET matrices are also retained in the archive.
+
+The reconstructed square shapes are: experimental 342 x 342 at 1 kb, AkitaV2
+166 x 166 at 2,048 bp, DeepC 68 x 68 at 5 kb, Orca 86 x 86 at 4 kb, EPCOT
+340 x 340 at 1 kb, ChromaFold 34 x 34 at 10 kb, AlphaGenome 166 x 166 at
+2,048 bp and Chimaera 166 x 166 at 2,048 bp. These differing shapes are a
+faithful consequence of preserving native resolution, not a failure to align
+the genomic locus.
 
 ## 6. Execution corrections and failures recorded
 

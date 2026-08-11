@@ -27,6 +27,14 @@
 - [x] Twenty-one active native artifacts are registered in the regenerated SHA-256 manifest; two superseded ChromaFold artifacts are preserved separately.
 - [x] Seven-model machine-readable audit reports PASS.
 - [x] Native dense, non-square, combined and target-assisted figures rendered.
+- [x] DeepC center poles reconstructed as a square through the C.Origami Supplementary Figure 8 mirror/rotate/crop-equivalent coordinate mapping.
+- [x] ChromaFold V-stripes reconstructed as a square using the associated benchmark's pair expansion and duplicate averaging.
+- [x] Chimaera midpoint-distance outputs inverted to square endpoint geometry; unsupported distances remain missing.
+- [x] No predictor values normalized, calibrated, quantile-clipped or fitted during square reconstruction.
+- [x] Experimental Hi-TrAC rendered with `log10(PET + 1)`, fixed 0.1-0.8 paper scale, white-to-red palette; raw PET matrices retained.
+- [x] Arial applied to every label in the geometry-standardized figure.
+- [x] Exact per-model native and difference color scales displayed and recorded.
+- [x] Geometry-standardized square archive, scale table, JSON audit and SHA-256 manifest generated.
 - [x] Gviz chromosome-3 ideogram and locus tracks rendered at the exact Figure 3D interval.
 - [x] Historical K562.hic extracted with Juicer observed NONE at 1 kb; 342 x 342 grid and 55,196 upper-triangle contacts independently verified.
 - [x] Scientific report records failures, modifications, cell-type mismatches and target-scale caveats.

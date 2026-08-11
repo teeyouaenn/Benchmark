@@ -15,6 +15,7 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 NATIVE = ROOT / "results" / "native"
 OUT = ROOT / "results"
+STANDARDIZED = OUT / "standardized"
 
 
 def sha256(path: Path) -> str:
@@ -39,6 +40,56 @@ def audit_npz(path: Path, expected: dict[str, tuple[int, ...]]) -> dict:
                 raise ValueError(f"{path}:{key}: {data[key].shape} != {shape}")
             finite(f"{path}:{key}", data[key])
         return {key: list(data[key].shape) for key in expected}
+
+
+def audit_square_reconstructions() -> dict[str, object]:
+    archive = STANDARDIZED / "FIGURE3D_SQUARE_MATRICES.npz"
+    audit_path = STANDARDIZED / "SQUARE_RECONSTRUCTION_AUDIT.json"
+    expected = {
+        "experimental": (342, 342),
+        "akita_v2": (166, 166),
+        "deepc": (68, 68),
+        "orca": (86, 86),
+        "epcot": (340, 340),
+        "chromafold": (34, 34),
+        "alphagenome": (166, 166),
+        "chimaera": (166, 166),
+    }
+    with np.load(archive, allow_pickle=False) as data:
+        for slug, shape in expected.items():
+            for condition in ("wt", "deletion", "difference"):
+                key = f"{slug}_{condition}"
+                if key not in data or data[key].shape != shape:
+                    raise ValueError(f"{archive}:{key}: expected {shape}")
+                if np.isinf(data[key]).any():
+                    raise RuntimeError(f"{archive}:{key}: contains infinity")
+            for condition in ("wt", "deletion"):
+                matrix = np.asarray(data[f"{slug}_{condition}"], dtype=np.float64)
+                if not np.allclose(matrix, matrix.T, equal_nan=True, atol=0, rtol=0):
+                    raise RuntimeError(f"{archive}:{slug}_{condition}: not exactly symmetric")
+            if not np.allclose(
+                data[f"{slug}_deletion"] - data[f"{slug}_wt"],
+                data[f"{slug}_difference"], equal_nan=True, atol=1e-6, rtol=1e-6,
+            ):
+                raise RuntimeError(f"{archive}:{slug}: stored difference is inconsistent")
+        if not np.allclose(
+            np.log10(data["experimental_wt_raw_pet"] + 1),
+            data["experimental_wt"], atol=1e-7, rtol=1e-7,
+        ):
+            raise RuntimeError("Experimental display is not log10(PET + 1)")
+
+    square_audit = json.loads(audit_path.read_text(encoding="utf-8"))
+    if square_audit.get("status") != "PASS":
+        raise RuntimeError("Square-reconstruction audit did not pass")
+    contract = square_audit["scientific_contract"]
+    if not contract.get("no_cross_model_value_normalization"):
+        raise RuntimeError("Square-reconstruction scale contract drift")
+    return {
+        "status": "PASS",
+        "models_plus_experiment": len(expected),
+        "archive_sha256": sha256(archive),
+        "audit_sha256": sha256(audit_path),
+    }
 
 
 def main() -> None:
@@ -126,6 +177,7 @@ def main() -> None:
         "scientific_boundary": "Native outputs are normalized structural predictions, not absolute PET counts.",
         "target_assisted_boundary": "Hi-TrAC-1D-assisted EPCOT/ChromaFold outputs are sensitivity analyses and ineligible for de novo ranking.",
     }
+    payload["geometry_standardized_square_outputs"] = audit_square_reconstructions()
     active_files = sorted(
         path
         for path in NATIVE.rglob("*")
@@ -141,7 +193,9 @@ def main() -> None:
     )
     payload["active_native_artifacts_hashed"] = len(active_files)
     payload["sha256_manifest"] = str(manifest_path)
-    (OUT / "MODEL_INPUT_OUTPUT_AUDIT.json").write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    (OUT / "MODEL_INPUT_OUTPUT_AUDIT.json").write_text(
+        json.dumps(payload, indent=2) + "\n", encoding="utf-8"
+    )
     print(json.dumps({"status": "PASS", "models_complete": 7, "csv": str(csv_path)}, indent=2))
 
 

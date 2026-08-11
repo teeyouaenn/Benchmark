@@ -5,6 +5,11 @@ wild-type and inferred BHLHE40-boundary-deletion sequences corresponding to
 Figure 3D of the Hi-TrAC NAR paper. It preserves every model's highest released
 native resolution, geometry, cell-type channel and scientific output scale.
 
+It also provides a second, geometry-standardized view in which all outputs are
+represented as square endpoint-by-endpoint matrices. This conversion changes
+geometry only: it does not normalize, calibrate or rescale any predictor's
+scientific values.
+
 The primary scientific question is **cross-cell-type transfer to the K562
 locus**. K562 DNA and control K562 DNase are supplied wherever the released
 architecture accepts accessibility. Models that accept DNA only receive K562
@@ -63,8 +68,9 @@ After placing the generated native products under `results/native/` and the
 registered common input bundle under `results/inputs/`:
 
 ```bash
-python scripts/audit_all_outputs.py
 python scripts/render_native_figure3d.py
+python scripts/render_square_comparison_figure3d.py
+python scripts/audit_all_outputs.py
 ```
 
 The model-specific launchers are under `scripts/`. Checkpoints and large input
@@ -85,6 +91,11 @@ test can be repeated with `scripts/audit_chromafold_junction_fimo.py`.
 - [Completion audit](results/COMPLETION_AUDIT.md)
 - [Model/input/output audit](results/MODEL_INPUT_OUTPUT_AUDIT.csv)
 - [All native outputs](figures/FIGURE3D_ALL_NATIVE_OUTPUTS.png)
+- [Geometry-standardized square comparison](figures/FIGURE3D_GEOMETRY_STANDARDIZED_SQUARES.png)
+- [Vector square comparison](figures/FIGURE3D_GEOMETRY_STANDARDIZED_SQUARES.svg)
+- [Square matrices and coordinate metadata](results/standardized/FIGURE3D_SQUARE_MATRICES.npz)
+- [Square-reconstruction audit](results/standardized/SQUARE_RECONSTRUCTION_AUDIT.json)
+- [Native scales and square geometry](results/standardized/SQUARE_MATRIX_SCALE_AND_GEOMETRY.csv)
 - [Square-map outputs](figures/FIGURE3D_DENSE_NATIVE_OUTPUTS.png)
 - [Pole, V-stripe and rotated outputs](figures/FIGURE3D_NON_SQUARE_NATIVE_OUTPUTS.png)
 - [Input tracks](figures/FIGURE3D_LOCUS_AND_INPUT_TRACKS.png)
@@ -105,5 +116,7 @@ test can be repeated with `scripts/audit_chromafold_junction_fimo.py`.
 - [Orca](https://www.nature.com/articles/s41588-022-01065-4) and [code](https://github.com/jzhoulab/orca)
 - [EPCOT](https://pmc.ncbi.nlm.nih.gov/articles/PMC10325920/) and [code](https://github.com/liu-bioinfo-lab/EPCOT)
 - [ChromaFold](https://www.nature.com/articles/s41467-024-53628-0) and [code](https://github.com/viannegao/ChromaFold)
+- [C.Origami Supplementary Figure 8 standardization workflow](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41587-022-01612-8/MediaObjects/41587_2022_1612_MOESM1_ESM.pdf)
+- [Independent bulk Hi-C benchmark](https://www.biorxiv.org/content/10.64898/2026.02.27.708323v1.full) and [square-conversion code](https://github.com/CBIGR/bulk_hic_benchmark)
 - [AlphaGenome](https://www.nature.com/articles/s41586-025-10014-0) and [API/code](https://github.com/google-deepmind/alphagenome)
 - [Chimaera](https://doi.org/10.1093/nar/gkaf1516) and [code](https://github.com/ashkolikov/chimaera)
