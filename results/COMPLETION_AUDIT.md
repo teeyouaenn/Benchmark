@@ -16,12 +16,15 @@
 - [x] DeepC official K562 5-kb checkpoint complete.
 - [x] Orca official HFF and H1 1-Mb checkpoints complete; 4-kb native output verified.
 - [x] EPCOT official HFF Micro-C 1-kb head complete.
-- [x] ChromaFold official motif/no-coaccess checkpoint complete.
+- [x] ChromaFold official motif/no-coaccess checkpoint complete using motif-level derivative reconstruction.
+- [x] Official AH104727 motif intervals reproduce the released WT 50-bp track exactly over all 87,200 inference bins.
+- [x] Exact FIMO 5.5.9 scan of the new derivative junction finds no CTCF motif at p <= 1e-4.
+- [x] ChromaFold's superseded center-sampled deletion adapter preserved and excluded; corrected inference reproduced bitwise on repeat.
 - [x] AlphaGenome official all-fold local weights complete; 28 contact tracks returned.
 - [x] Chimaera official human release complete.
 - [x] All expected output shapes verified.
 - [x] Every consolidated prediction finite.
-- [x] Nineteen locally copied native artifacts match their registered SHA-256 hashes; zero mismatches.
+- [x] Twenty-one active native artifacts are registered in the regenerated SHA-256 manifest; two superseded ChromaFold artifacts are preserved separately.
 - [x] Seven-model machine-readable audit reports PASS.
 - [x] Native dense, non-square, combined and target-assisted figures rendered.
 - [x] Gviz chromosome-3 ideogram and locus tracks rendered at the exact Figure 3D interval.

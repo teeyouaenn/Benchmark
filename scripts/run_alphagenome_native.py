@@ -10,7 +10,6 @@ from pathlib import Path
 
 import jax
 import numpy as np
-import pandas as pd
 from alphagenome.data import genome
 from alphagenome_research.model import dna_model
 

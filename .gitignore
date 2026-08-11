@@ -2,6 +2,7 @@ _runtime/
 .tmp/
 __pycache__/
 results/inputs/*.npz
+!results/inputs/CHROMAFOLD_AH104727_CHR3_MOTIF_HITS.npz
 *.log
 *.tmp
 *.tar.gz
@@ -9,5 +10,6 @@ results/inputs/*.npz
 *.pth.tar
 *.statedict
 *.fa
+!results/inputs/BHLHE40_DERIVATIVE_JUNCTION_200BP.fa
 *.fa.gz
 *.fai

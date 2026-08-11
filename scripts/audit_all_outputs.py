@@ -126,6 +126,21 @@ def main() -> None:
         "scientific_boundary": "Native outputs are normalized structural predictions, not absolute PET counts.",
         "target_assisted_boundary": "Hi-TrAC-1D-assisted EPCOT/ChromaFold outputs are sensitivity analyses and ineligible for de novo ranking.",
     }
+    active_files = sorted(
+        path
+        for path in NATIVE.rglob("*")
+        if path.is_file() and "superseded_center_sampled" not in path.parts
+    )
+    manifest_path = OUT / "NATIVE_OUTPUT_SHA256SUMS.txt"
+    manifest_path.write_text(
+        "".join(
+            f"{sha256(path)}  {path.relative_to(ROOT).as_posix()}\n"
+            for path in active_files
+        ),
+        encoding="utf-8",
+    )
+    payload["active_native_artifacts_hashed"] = len(active_files)
+    payload["sha256_manifest"] = str(manifest_path)
     (OUT / "MODEL_INPUT_OUTPUT_AUDIT.json").write_text(json.dumps(payload, indent=2), encoding="utf-8")
     print(json.dumps({"status": "PASS", "models_complete": 7, "csv": str(csv_path)}, indent=2))
 

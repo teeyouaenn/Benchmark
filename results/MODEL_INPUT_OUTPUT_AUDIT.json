@@ -60,7 +60,7 @@
       "absolute_counts": false,
       "k562_matched": false,
       "primary_de_novo": true,
-      "output_sha256": "6a62290157a979f13ebdfa6e2d718c4097a215ff4268185900ffcb8e5e1dbc93"
+      "output_sha256": "206ed50282965c16c89ce2edeb2ed39fdc6f37c9b3e8eb9c709c07e1d92ec3af"
     },
     {
       "model": "AlphaGenome",
@@ -88,5 +88,7 @@
     }
   ],
   "scientific_boundary": "Native outputs are normalized structural predictions, not absolute PET counts.",
-  "target_assisted_boundary": "Hi-TrAC-1D-assisted EPCOT/ChromaFold outputs are sensitivity analyses and ineligible for de novo ranking."
+  "target_assisted_boundary": "Hi-TrAC-1D-assisted EPCOT/ChromaFold outputs are sensitivity analyses and ineligible for de novo ranking.",
+  "active_native_artifacts_hashed": 21,
+  "sha256_manifest": "C:\\Users\\vinhtb\\Desktop\\Bioconjugation\\Benchmark\\results\\NATIVE_OUTPUT_SHA256SUMS.txt"
 }

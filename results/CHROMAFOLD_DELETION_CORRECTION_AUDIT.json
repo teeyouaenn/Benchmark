@@ -1,0 +1,70 @@
+{
+  "comparison": {
+    "deletion_control_dnase": {
+      "exactly_equal": false,
+      "max_absolute_difference": 1.0928702354431152,
+      "mean_absolute_difference": 0.13371673226356506,
+      "pearson": 0.9828358208320528
+    },
+    "deletion_hitrac1d_assisted": {
+      "exactly_equal": false,
+      "max_absolute_difference": 0.731188952922821,
+      "mean_absolute_difference": 0.07406943291425705,
+      "pearson": 0.9868329767672435
+    },
+    "wt_control_dnase": {
+      "exactly_equal": false,
+      "max_absolute_difference": 0.0024443715810775757,
+      "mean_absolute_difference": 0.0004797690489795059,
+      "pearson": 0.9999998287388682
+    }
+  },
+  "corrected_sha256": "206ed50282965c16c89ce2edeb2ed39fdc6f37c9b3e8eb9c709c07e1d92ec3af",
+  "input_invariants": {
+    "deletion_accessibility_mean_exact": true,
+    "deletion_accessibility_sd_exact": true,
+    "wt_input_summary_exact": true
+  },
+  "motif_derivative_audit": {
+    "deletion": {
+      "motifs_disrupted_by_deletion": 4,
+      "motifs_input": 3079,
+      "motifs_shifted_downstream": 1463,
+      "nonzero_50bp_bins": 3113
+    },
+    "legacy_center_sampled_deletion_bins_changed": 1045,
+    "legacy_center_sampled_deletion_max_abs_difference": 3.1075375080108643,
+    "reference": {
+      "motifs_disrupted_by_deletion": 0,
+      "motifs_input": 3079,
+      "motifs_shifted_downstream": 0,
+      "nonzero_50bp_bins": 3104
+    },
+    "reference_reconstruction_bins": 87200,
+    "reference_reconstruction_max_abs_difference": 0.0,
+    "reference_reconstruction_mismatched_bins_at_1e-6": 0
+  },
+  "repeat_reproducibility": {
+    "deletion_control_dnase": {
+      "exactly_equal": true,
+      "max_absolute_difference": 0.0,
+      "mean_absolute_difference": 0.0,
+      "pearson": 1.0
+    },
+    "deletion_hitrac1d_assisted": {
+      "exactly_equal": true,
+      "max_absolute_difference": 0.0,
+      "mean_absolute_difference": 0.0,
+      "pearson": 0.9999999999999998
+    },
+    "wt_control_dnase": {
+      "exactly_equal": true,
+      "max_absolute_difference": 0.0,
+      "mean_absolute_difference": 0.0,
+      "pearson": 1.0
+    }
+  },
+  "status": "PASS",
+  "superseded_sha256": "6a62290157a979f13ebdfa6e2d718c4097a215ff4268185900ffcb8e5e1dbc93",
+  "verdict": "The prior center-sampled 50-bp deletion motif track is superseded. The corrected run transforms official AH104727 motif intervals onto the derivative chromosome before rasterization; WT inputs are unchanged and corrected inference is exactly reproducible."
+}

@@ -1,0 +1,30 @@
+{
+  "checks": {
+    "dna_downstream_overlap_exact": true,
+    "dna_prejunction_exact": true,
+    "dnase_downstream_overlap_max_abs": 0.0,
+    "dnase_prejunction_max_abs": 0.0,
+    "mapping_downstream_exact": true,
+    "mapping_prejunction_exact": true
+  },
+  "deletion_interpretation": "clean 723-bp SpCas9 cut-to-cut derivative inferred from the two published guides; the exact clone-resolved repair junction is not published",
+  "geometry_0based_half_open": {
+    "delete_end": 4976790,
+    "delete_start": 4976067,
+    "end": 7000000,
+    "start": 3000000
+  },
+  "hashes": {
+    "control_dnase_float32_sha256": "13998e074d47c17d2c27c6231f524fd86bba4a9aaa2241bedba42ccc7094cb3b",
+    "deletion_control_dnase_float32_sha256": "46cee413e5383ddb00348b6998f3446b339b83633456a0e22ec6b97656630152",
+    "deletion_sequence_sha256": "8ee2e6270f47fa3044b4b639c48e6a88445c12e24b4b8be738bed8d48e1e2942",
+    "wt_sequence_sha256": "099afe3c8eac9c6776802db7b378d952715f70cff30e89977f243e15c0041de1"
+  },
+  "source_checks": {
+    "control_dnase_max_abs": 0.0,
+    "deletion_dnase_max_abs": 0.0,
+    "reference_deletion_exact": true,
+    "reference_wt_exact": true
+  },
+  "status": "PASS"
+}

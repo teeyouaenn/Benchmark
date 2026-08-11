@@ -10,7 +10,7 @@
     4976790
   ],
   "deletion_length_bp": 723,
-  "deletion_status": "inferred clean sgRNA-bounded deletion; exact clone junction unavailable",
+  "deletion_status": "inferred clean SpCas9 cut-to-cut deletion; exact clone junction unavailable",
   "deletion_window_construction": "fixed-length derivative chromosome: delete the inferred interval, join the flanks, and append an equal-length downstream reference tail",
   "display_0based_half_open": [
     4803501,

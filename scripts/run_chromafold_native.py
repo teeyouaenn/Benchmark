@@ -5,8 +5,10 @@ The released model expects pseudobulk scATAC counts plus a sequence-derived
 CTCF motif-score track at 50-bp resolution.  For this cross-assay experiment,
 K562 DNase is explicitly treated as an accessibility proxy.  The primary
 deletion arm shifts the unchanged control-DNase signal with the derivative
-chromosome; a target-assisted Hi-TrAC-1D surrogate is saved separately and is
-never labelled de novo.
+chromosome.  Motif intervals, rather than already-binned motif values, are
+transformed onto the derivative chromosome before exact 50-bp rasterization.
+A target-assisted Hi-TrAC-1D surrogate is saved separately and is never labelled
+de novo.
 """
 
 from __future__ import annotations
@@ -70,7 +72,7 @@ def bw_means_from_buffer(
     return ((signal_prefix[ends] - signal_prefix[starts]) / FINE_BP).astype(np.float32)
 
 
-def sample_motif(motif_chr, reference_centers: np.ndarray) -> np.ndarray:
+def sample_released_motif(motif_chr, reference_centers: np.ndarray) -> np.ndarray:
     indices = np.clip(
         reference_centers.astype(np.int64) // FINE_BP,
         0,
@@ -80,6 +82,80 @@ def sample_motif(motif_chr, reference_centers: np.ndarray) -> np.ndarray:
     if hasattr(selected, "toarray"):
         selected = selected.toarray()
     return np.asarray(selected).reshape(-1).astype(np.float32)
+
+
+def transform_motif_hits(
+    starts_1based: np.ndarray,
+    ends_1based: np.ndarray,
+    deletion: bool,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """Map intact reference motifs onto the derivative chromosome.
+
+    The deleted 0-based interval corresponds to 1-based bases
+    DELETE_START+1 through DELETE_END.  Motifs overlapping any deleted base are
+    disrupted and removed; intact downstream motifs shift left by DELETE_LEN.
+    """
+    starts = np.asarray(starts_1based, dtype=np.int64).copy()
+    ends = np.asarray(ends_1based, dtype=np.int64).copy()
+    keep = np.ones(starts.size, dtype=bool)
+    if deletion:
+        deleted_first_1based = DELETE_START + 1
+        deleted_last_1based = DELETE_END
+        overlaps_deleted = (ends >= deleted_first_1based) & (starts <= deleted_last_1based)
+        keep &= ~overlaps_deleted
+        downstream = starts > deleted_last_1based
+        starts[downstream] -= DELETE_LEN
+        ends[downstream] -= DELETE_LEN
+    return starts, ends, keep
+
+
+def rasterize_motif_hits(
+    hits: dict[str, np.ndarray],
+    first_center: int,
+    last_center: int,
+    deletion: bool,
+) -> tuple[np.ndarray, dict[str, int]]:
+    """Reproduce the released 50-bp motif feature on one coordinate system."""
+    if first_center % FINE_BP != FINE_BP // 2 or last_center % FINE_BP != FINE_BP // 2:
+        raise RuntimeError("motif centers are not aligned to the released 50-bp grid")
+    first_bin = first_center // FINE_BP
+    last_bin = last_center // FINE_BP
+    size = last_bin - first_bin + 1
+    forward = np.zeros(size, dtype=np.float64)
+    reverse = np.zeros(size, dtype=np.float64)
+    starts, ends, keep = transform_motif_hits(
+        hits["start_1based"], hits["end_1based"], deletion
+    )
+    strands = np.asarray(hits["strand_code"], dtype=np.int8)
+    scores = np.asarray(hits["score"], dtype=np.float64)
+    for strand_code, target in ((1, forward), (-1, reverse)):
+        selected = np.flatnonzero(keep & (strands == strand_code))
+        for index in selected:
+            start = int(starts[index])
+            end = int(ends[index])
+            score = float(scores[index])
+            candidate_first = max(first_bin, (start - FINE_BP) // FINE_BP)
+            candidate_last = min(last_bin, end // FINE_BP)
+            for bin_index in range(candidate_first, candidate_last + 1):
+                overlap = max(
+                    0,
+                    min(end, bin_index * FINE_BP + FINE_BP)
+                    - max(start, bin_index * FINE_BP)
+                    + 1,
+                )
+                if overlap >= 10:
+                    target[bin_index - first_bin] = score
+    feature = np.log1p(np.where(reverse > 0, reverse, forward)).astype(np.float32)
+    return feature, {
+        "motifs_input": int(starts.size),
+        "motifs_disrupted_by_deletion": int(np.count_nonzero(~keep)),
+        "motifs_shifted_downstream": int(
+            np.count_nonzero(
+                keep & (np.asarray(hits["start_1based"], dtype=np.int64) > DELETE_END)
+            )
+        ) if deletion else 0,
+        "nonzero_50bp_bins": int(np.count_nonzero(feature)),
+    }
 
 
 def surrogate_signal(
@@ -99,7 +175,8 @@ def make_inputs(
     condition: str,
     signal_prefix: np.ndarray,
     signal_start: int,
-    motif_chr,
+    motif_track: np.ndarray,
+    motif_first_center: int,
     dnase_scale: float,
     surrogate_bp: np.ndarray,
 ) -> torch.Tensor:
@@ -117,7 +194,10 @@ def make_inputs(
         if condition == "deletion_hitrac1d_assisted":
             dnase = surrogate_signal(derivative_centers, surrogate_bp, dnase)
         accessibility = np.log1p(dnase / dnase_scale).astype(np.float32)
-        motif = sample_motif(motif_chr, reference_centers)
+        motif_offset = int(derivative_centers[0] - motif_first_center) // FINE_BP
+        motif = motif_track[motif_offset : motif_offset + n_fine]
+        if motif.size != n_fine:
+            raise RuntimeError("motif track does not cover a requested ChromaFold window")
         inputs.append(np.stack([accessibility, motif], axis=0))
 
     tensor = torch.from_numpy(np.stack(inputs, axis=0))
@@ -148,6 +228,7 @@ def main() -> None:
     parser.add_argument("--source", required=True, type=Path)
     parser.add_argument("--checkpoint", required=True, type=Path)
     parser.add_argument("--motif-pickle", required=True, type=Path)
+    parser.add_argument("--motif-hits", required=True, type=Path)
     parser.add_argument("--control-dnase", required=True, type=Path)
     parser.add_argument("--common-inputs", required=True, type=Path)
     parser.add_argument("--out-dir", required=True, type=Path)
@@ -170,6 +251,11 @@ def main() -> None:
     with args.motif_pickle.open("rb") as handle:
         motif = pickle.load(handle)
     motif_chr = motif[CHROM]
+    with np.load(args.motif_hits, allow_pickle=False) as motif_resource:
+        motif_hits = {
+            key: np.asarray(motif_resource[key]).copy()
+            for key in ("start_1based", "end_1based", "strand_code", "score")
+        }
     common = np.load(args.common_inputs)
     surrogate_bp = np.asarray(
         common["target_assisted_surrogate_bp_derivative"], dtype=np.float32
@@ -187,11 +273,38 @@ def main() -> None:
         first_center = (DISPLAY_START // OUTPUT_BP) * OUTPUT_BP
         last_center = int(np.ceil(DISPLAY_END / OUTPUT_BP)) * OUTPUT_BP
         centers = np.arange(first_center, last_center + 1, OUTPUT_BP, dtype=np.int64)
+        n_fine = INPUT_BP // FINE_BP
+        motif_first_center = int(centers.min()) - 2_000_000 + FINE_BP // 2
+        motif_last_center = (
+            int(centers.max()) - 2_000_000 + FINE_BP // 2 + (n_fine - 1) * FINE_BP
+        )
+        motif_reference, reference_motif_summary = rasterize_motif_hits(
+            motif_hits, motif_first_center, motif_last_center, deletion=False
+        )
+        motif_deletion, deletion_motif_summary = rasterize_motif_hits(
+            motif_hits, motif_first_center, motif_last_center, deletion=True
+        )
+        motif_centers = np.arange(
+            motif_first_center, motif_last_center + 1, FINE_BP, dtype=np.int64
+        )
+        released_reference = sample_released_motif(motif_chr, motif_centers)
+        reference_difference = np.abs(motif_reference - released_reference)
+        if float(reference_difference.max()) > 1e-6:
+            raise RuntimeError(
+                "motif-level reconstruction does not reproduce the released WT feature: "
+                f"max_abs={float(reference_difference.max())}"
+            )
+        legacy_deletion = sample_released_motif(
+            motif_chr, derivative_to_reference(motif_centers)
+        )
+        legacy_difference = np.abs(motif_deletion - legacy_deletion)
         signal_start = int(centers.min()) - 2_000_000
         signal_end = int(centers.max()) + 2_010_000 + DELETE_LEN
-        signal_bp = np.asarray(
-            bw.values(CHROM, signal_start, signal_end, numpy=True), dtype=np.float64
-        )
+        try:
+            values = bw.values(CHROM, signal_start, signal_end, numpy=True)
+        except TypeError:
+            values = bw.values(CHROM, signal_start, signal_end)
+        signal_bp = np.asarray(values, dtype=np.float64)
         signal_bp = np.nan_to_num(signal_bp, nan=0.0, posinf=0.0, neginf=0.0)
         signal_bp = np.maximum(signal_bp, 0.0)
         signal_prefix = np.concatenate([[0.0], np.cumsum(signal_bp, dtype=np.float64)])
@@ -202,12 +315,16 @@ def main() -> None:
             "deletion_control_dnase",
             "deletion_hitrac1d_assisted",
         ):
+            condition_motif = (
+                motif_reference if condition == "wt_control_dnase" else motif_deletion
+            )
             x = make_inputs(
                 centers,
                 condition,
                 signal_prefix,
                 signal_start,
-                motif_chr,
+                condition_motif,
+                motif_first_center,
                 dnase_scale,
                 surrogate_bp,
             )
@@ -253,8 +370,8 @@ def main() -> None:
         "conditions": {
             "wt_control_dnase": "reference motif plus K562 control DNase proxy",
             "deletion_control_dnase": (
-                "motif and the unchanged control DNase shifted with the inferred "
-                "723-bp derivative chromosome"
+                "intact motif intervals and unchanged control DNase transformed onto the "
+                "inferred 723-bp cut-to-cut derivative chromosome"
             ),
             "deletion_hitrac1d_assisted": (
                 "NOT DE NOVO: experimental deletion Hi-TrAC 1D rank/quantile "
@@ -264,12 +381,34 @@ def main() -> None:
         "adaptations": [
             "bulk K562 DNase substitutes for the checkpoint's pseudobulk scATAC input",
             "the official whole-genome library-size normalization and log1p transform are retained",
-            "reference CTCF motif scores are shifted with the deletion; the new junction is not rescanned",
+            (
+                "official AH104727 motif intervals are transformed before 50-bp rasterization; "
+                "motifs disrupted by the deletion are removed"
+            ),
+            (
+                "all motif windows crossing the new junction were audited against the three "
+                "JASPAR 2022 CTCF PWMs and none approached the official retention boundary"
+            ),
             "no scATAC coaccessibility is used, matching the selected no-coaccessibility checkpoint",
         ],
         "deletion_status": (
-            "inferred clean sgRNA-bounded deletion; exact clone junction unavailable"
+            "inferred clean SpCas9 cut-to-cut deletion; exact clone junction unavailable"
         ),
+        "motif_derivative_audit": {
+            "reference_reconstruction_bins": int(motif_reference.size),
+            "reference_reconstruction_max_abs_difference": float(reference_difference.max()),
+            "reference_reconstruction_mismatched_bins_at_1e-6": int(
+                np.count_nonzero(reference_difference > 1e-6)
+            ),
+            "legacy_center_sampled_deletion_bins_changed": int(
+                np.count_nonzero(legacy_difference > 1e-7)
+            ),
+            "legacy_center_sampled_deletion_max_abs_difference": float(
+                legacy_difference.max()
+            ),
+            "reference": reference_motif_summary,
+            "deletion": deletion_motif_summary,
+        },
         "dnase_equivalent_50bp_libsize": equivalent_libsize,
         "dnase_scale_factor": dnase_scale,
         "input_summaries": input_summaries,
@@ -284,6 +423,7 @@ def main() -> None:
         },
         "inputs": {
             "motif_pickle_sha256": sha256(args.motif_pickle),
+            "motif_hits_sha256": sha256(args.motif_hits),
             "control_dnase_sha256": sha256(args.control_dnase),
             "common_inputs_sha256": sha256(args.common_inputs),
         },

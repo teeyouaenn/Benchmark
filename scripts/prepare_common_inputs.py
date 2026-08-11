@@ -175,7 +175,9 @@ def main() -> None:
         "display_0based_half_open": [DISPLAY_START, DISPLAY_END],
         "deletion_0based_half_open": [DELETE_START, DELETE_END],
         "deletion_length_bp": deletion_length,
-        "deletion_status": "inferred clean sgRNA-bounded deletion; exact clone junction unavailable",
+        "deletion_status": (
+            "inferred clean SpCas9 cut-to-cut deletion; exact clone junction unavailable"
+        ),
         "deletion_window_construction": (
             "fixed-length derivative chromosome: delete the inferred interval, "
             "join the flanks, and append an equal-length downstream reference tail"

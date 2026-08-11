@@ -68,8 +68,12 @@ for sequence-perturbation inference.
 - Accessibility-aware models receive control K562 DNase in both conditions.
 - In the deletion condition, the control signal moves with its attached DNA
   across the derivative junction; it is not replaced with deletion Hi-TrAC.
-- The ChromaFold motif track is shifted in the same manner. The novel junction
-  was not rescanned for a new motif, which is explicitly recorded as a limitation.
+- For ChromaFold, the official AH104727 motif intervals are transformed onto
+  the derivative chromosome before exact 50-bp rasterization. Four motifs
+  overlapping deleted bases are removed and 1,463 intact downstream motifs in
+  the registered input domain shift by exactly 723 bp. An explicit scan of all
+  sequence windows crossing the new junction with FIMO 5.5.9 against the same
+  three JASPAR 2022 CTCF PWMs found no hit at `p <= 1e-4`.
 
 The native input signature of every released model is respected. DNase is not
 injected into AkitaV2, DeepC, Orca, AlphaGenome or Chimaera because those
@@ -122,7 +126,7 @@ measure of perturbation magnitude; it is not accuracy against Hi-TrAC.
 | DeepC K562 | 0.9748 | 0.253 |
 | Orca HFF | 0.9716 | 0.277 |
 | EPCOT HFF + K562 DNase | 0.9138 | 0.479 |
-| ChromaFold motif + K562 DNase proxy | 0.7341 | 0.863 |
+| ChromaFold motif + K562 DNase proxy | 0.7556 | 0.805 |
 | AlphaGenome HFFc6 Micro-C | 0.9845 | 0.177 |
 | Chimaera human | 0.9229 | 0.386 |
 
@@ -172,6 +176,17 @@ rows because every model predicts a different transformed quantity.
 - ChromaFold initially failed because a SciPy sparse slice was passed where a
   dense array was required; conversion with `.toarray()` fixed data handling
   without altering the model.
+- A publication audit then found that the first deletion adapter sampled the
+  released 50-bp motif track at shifted bin centers. Because 723 is not divisible
+  by 50, this displaced downstream motif bins and could not represent a new
+  junction motif. That output is preserved under
+  `results/native/chromafold/superseded_center_sampled/` but is ineligible.
+  The corrected adapter starts from official AH104727 motif intervals, removes
+  disrupted motifs, shifts intact downstream motifs at base-pair resolution and
+  then repeats ChromaFold's 50-bp rasterization. It reproduces the released WT
+  motif track over 87,200 input bins exactly (maximum difference 0), changes
+  1,045 deletion-track bins relative to the superseded shortcut, and gives
+  bitwise-identical predictions on an independent repeated inference run.
 - All seven consolidated outputs passed shape, finiteness and SHA-256 audits.
 - Re-audited every supplemental workbook and the complete supplemental PDF;
   corrected the deletion terminology from guide-bounded to SpCas9 cut-to-cut.
@@ -198,6 +213,8 @@ rows because every model predicts a different transformed quantity.
 - Common input bundle SHA-256: `6040cf45f0b75005a6a18c4e1f5e19da493ccbad5a1e476bbd87e0c14ea865bb`
 - Control DNase SHA-256: `7ba6ba20ed8c25acc282d03253360ac8edcdce6b9ab1a90832a980cfeaad12c6`
 - Experimental truth SHA-256: `941ec6a9803e8769b2bb6dc7fb690f57b71769ebd63c58a7fe532cb8e22e6aab`
+- Corrected ChromaFold native output SHA-256: `206ed50282965c16c89ce2edeb2ed39fdc6f37c9b3e8eb9c709c07e1d92ec3af`
+- Official AH104727 motif resource SHA-256: `302251750af6fc23e23a783626e3b5f6ec111704fe4bcdc381dc71c6eb9bb8df`
 
 Per-model output and checkpoint hashes are in the machine-readable audits under
 `results/native/` and `results/MODEL_INPUT_OUTPUT_AUDIT.csv`.

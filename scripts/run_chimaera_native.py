@@ -175,7 +175,7 @@ def main() -> None:
             ),
         },
         "deletion_status": (
-            "inferred clean sgRNA-bounded deletion; exact clone junction unavailable"
+            "inferred clean SpCas9 cut-to-cut deletion; exact clone junction unavailable"
         ),
         "summaries": {
             "wt": {

@@ -1,0 +1,43 @@
+{
+  "annotationhub_id": "AH104727",
+  "annotationhub_rdata_sha256": "302251750af6fc23e23a783626e3b5f6ec111704fe4bcdc381dc71c6eb9bb8df",
+  "chromosome": "chr3",
+  "extracted_hit_count": 3079,
+  "novel_junction_scan": {
+    "method": "all windows crossing the derivative junction were scored against the three JASPAR 2022 CTCF PWMs; every best score was more than 5 score units below the weakest motif retained in the official AH104727 FIMO resource",
+    "motifs": {
+      "JASPAR2022_CORE_vertebrates_CTCF_MA0139.1": {
+        "best_approximate_fimo_log_odds": -7.28619145375452,
+        "best_derivative_start_0based": 4976057,
+        "margin_below_weakest_official_score": 15.05668145375452,
+        "strand": "+",
+        "weakest_official_retained_score": 7.77049
+      },
+      "JASPAR2022_CORE_vertebrates_CTCF_MA1929.1": {
+        "best_approximate_fimo_log_odds": -3.6932853307962823,
+        "best_derivative_start_0based": 4976034,
+        "margin_below_weakest_official_score": 11.563205330796283,
+        "strand": "+",
+        "weakest_official_retained_score": 7.86992
+      },
+      "JASPAR2022_CORE_vertebrates_CTCF_MA1930.1": {
+        "best_approximate_fimo_log_odds": -9.759846363374425,
+        "best_derivative_start_0based": 4976041,
+        "margin_below_weakest_official_score": 15.980026363374424,
+        "strand": "+",
+        "weakest_official_retained_score": 6.22018
+      }
+    },
+    "result": "NO_RETAINED_CTCF_MOTIF"
+  },
+  "output_npz_sha256": "14c05ec5236a2ebc6f66b56db554ac65a08acd2f12270377f6ea5a054dee95ca",
+  "purpose": "motif-level derivative reconstruction for the 723-bp BHLHE40 deletion",
+  "reference_motif_pickle_sha256": "a0719ad09348c440a8bb22a01e2faa41db1caa3a898a948691cbce59f0b8a2e5",
+  "reference_reconstruction": {
+    "bins_checked": 87219,
+    "max_absolute_difference": 4.440892098500626e-16,
+    "mismatched_bins_at_1e-12": 0,
+    "nonzero_bins": 3104
+  },
+  "status": "PASS"
+}

@@ -56,10 +56,10 @@
   {
     "model": "ChromaFold motif",
     "native_values_compared": 13600,
-    "wt_deletion_pearson": 0.7340909096820344,
-    "mean_absolute_native_delta": 0.5538860436322712,
-    "rms_native_delta": 0.7689559576566144,
-    "rms_delta_over_wt_sd": 0.8629416795485295,
+    "wt_deletion_pearson": 0.7555813319009473,
+    "mean_absolute_native_delta": 0.49882603474052944,
+    "rms_native_delta": 0.7174421458799798,
+    "rms_delta_over_wt_sd": 0.8050531671914692,
     "warning": "Within-model perturbation magnitude only; native scales are not comparable across rows."
   },
   {

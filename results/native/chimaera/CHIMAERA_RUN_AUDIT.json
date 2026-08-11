@@ -6,7 +6,7 @@
     "model_params_sha256": "de8b72e70023c3cce51ff5168ec288f395fb3d97e344d5ea71b6cd968f3cea24"
   },
   "common_inputs_sha256": "6040cf45f0b75005a6a18c4e1f5e19da493ccbad5a1e476bbd87e0c14ea865bb",
-  "deletion_status": "inferred clean sgRNA-bounded deletion; exact clone junction unavailable",
+  "deletion_status": "inferred clean SpCas9 cut-to-cut deletion; exact clone junction unavailable",
   "inference": {
     "forward_reverse_complement_average": true,
     "implementation_equivalence": "direct TorchScript composition of released dna_encoder.pt and hic_decoder.pt; identical composition and RC averaging to the released ModelContainer"

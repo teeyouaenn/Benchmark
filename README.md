@@ -20,7 +20,9 @@ The primary comparison is strictly de novo:
 
 - WT: reference DNA plus control K562 DNase where the model accepts accessibility.
 - Deletion: inferred deletion DNA plus the same control K562 DNase shifted with
-  its attached DNA across the derivative-chromosome junction.
+  its attached DNA across the derivative-chromosome junction. For ChromaFold,
+  official motif intervals are transformed before exact 50-bp re-binning;
+  disrupted motifs are removed and the new junction has no retained CTCF motif.
 
 This means “cross-cell transfer” has two explicitly separated forms:
 
@@ -69,6 +71,14 @@ The model-specific launchers are under `scripts/`. Checkpoints and large input
 tracks are deliberately excluded from Git; `scripts/download_resources.sh`
 retrieves the public releases that support direct download.
 
+The compact, chromosome-3 motif-call resource required by the corrected
+ChromaFold deletion adapter is versioned at
+`results/inputs/CHROMAFOLD_AH104727_CHR3_MOTIF_HITS.npz`. It was extracted from
+AnnotationHub `AH104727` with `scripts/extract_chromafold_motif_hits.py`; its
+source and reconstruction hashes are recorded in
+`results/inputs/CHROMAFOLD_MOTIF_RESOURCE_AUDIT.json`. The exact FIMO junction
+test can be repeated with `scripts/audit_chromafold_junction_fimo.py`.
+
 ## Outputs
 
 - [Scientific report](SCIENTIFIC_REPORT.md)
@@ -81,6 +91,10 @@ retrieves the public releases that support direct download.
 - [Target-assisted sensitivity analysis](figures/FIGURE3D_TARGET_ASSISTED_NOT_DENOVO.png)
 - [Gviz ideogram, audited locus tracks and historical K562.hic map](figures/GVIZ_K562_HIC_BHLHE40_FIGURE3D.png)
 - [Deletion breakpoint re-audit](results/DELETION_BREAKPOINT_REAUDIT.md)
+- [Derivative DNA/DNase source audit](results/inputs/DERIVATIVE_INPUT_AUDIT.json)
+- [ChromaFold motif-resource audit](results/inputs/CHROMAFOLD_MOTIF_RESOURCE_AUDIT.json)
+- [Exact derivative-junction FIMO audit](results/inputs/CHROMAFOLD_JUNCTION_FIMO_AUDIT.json)
+- [ChromaFold deletion correction audit](results/CHROMAFOLD_DELETION_CORRECTION_AUDIT.json)
 - [K562.hic extraction audit](results/k562_hic/K562_HIC_FIGURE3D_AUDIT.json)
 
 ## Primary sources

@@ -1,0 +1,19 @@
+{
+  "fimo_version": "5.5.9",
+  "hashes": {
+    "fimo_table_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "junction_fasta_sha256": "2fa36965b2c0732d54173408f409f8a9ec3bece03b2c9cfbfeb6f2254400929a",
+    "junction_sequence_sha256": "11fc390c3962604df27e9b03c850c085ce6c350c998d5666cf4bce8044ffb989",
+    "meme_motifs_sha256": "8edc0d8e64efcd4ed7e49c882f95a74edfcc5a7d07310d63fcbed5b4fcf25ba1"
+  },
+  "junction_derivative_0based": 4976067,
+  "segment_0based_half_open": [
+    4975967,
+    4976167
+  ],
+  "significant_hits_crossing_junction": [],
+  "significant_hits_in_200bp_segment": [],
+  "status": "PASS",
+  "threshold": 0.0001,
+  "verdict": "No FIMO hit at p <= 1e-4 crosses the inferred derivative junction."
+}
